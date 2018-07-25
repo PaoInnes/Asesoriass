@@ -1,0 +1,14 @@
+{
+  "name": "asess",
+  "version": "1.0.0",
+  "description": "Sistema de asesorías entre pares de alumnos en Prepa6, basado en el plan de estudios de la ENP.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Paola Innes",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.6.1"
+  }
+}
