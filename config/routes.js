@@ -25,9 +25,20 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': {
-    view: 'pages/homepage'
+    view: 'pages/main'
   },
-
+  '/login': {
+    view: 'pages/login'
+  },
+  '/registro': {
+    view: 'pages/registro'
+  },
+  'POST /main': {
+    view: 'api/controllers/LoginController.validar'
+  },
+  // 'POST /main': { //Aquí ya pondría os controladores para inicio de sesión y así
+  //   view: 'pages/main'
+  // },
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
