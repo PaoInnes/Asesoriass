@@ -22,26 +22,27 @@ module.exports = {
       }
   },
   login: async function (req, res) {
-    let user = await User.find({id: req.body.accountNumberIn});
-    // console.log(res);
-    if(!user){//si no encuentra el usuario avisar que no está registrado
-      console.log(res);
+    if (req.body.accountNumberIn) {
+      let user = await User.findOne({id: req.body.accountNumberIn});
+      if(!user)//si no encuentra el usuario avisar que no está registrado
       return res.view("pages/login", {error: "No se encontró el usuario"});
-    }
-    else{
-      bcrypt.compare(req.body.password,user.password,(err, res)=>{
-        if (err) //si nhay un error
+
+      else{
+        bcrypt.compare(req.body.password,user.password,(err, resp)=>{
+          if (err) //si hay un error
           return res.view("pages/login", {error: "Algo anda mal y no hemos podido inciar tu sesión"});
 
-        if (res){ //si todo está chido
-          req.session.userId = user.id;
-          return res.redirect("/");
-        }
-        //Si está mal la contraseña
-        return res.view("pages/login", {error: "Verfifica tus datos"});
+          if (resp){ //si todo está chido
+            req.session.userId = user.id;
+            return res.view("pages/home");
+          }
+          //Si está mal la contraseña
+          return res.view("pages/login", {error: "Verfifica tus datos"});
 
-      })
+        })
+      }
     }
+    return res.view("pages/login", {error: "Ingresa un usuario"});
   }
 
 };

@@ -11,7 +11,6 @@ module.exports = {
     id: {
       type: "string",
       required: true,
-      maxLength: 9,
       regex: /^(31)[0-9]{7}/,
     },
     name: {
@@ -32,11 +31,11 @@ module.exports = {
       via: 'advice',
     },
   },
-    beforeCreate : function(data, proceed){
-      bcrypt.hash(data.password, 3, (err, hash)=>{
-        data.password = hash;
-        return proceed();
-      });
+  beforeCreate : function(data, proceed){
+    bcrypt.hash(data.password, 3, (err, hash)=>{
+      data.password = hash;
+      return proceed();
+    });
   },
 
 };

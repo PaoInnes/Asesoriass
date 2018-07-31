@@ -14,3 +14,25 @@
   font-size: 1em !important;
 
 }
+#add{
+  width: 60px;
+  height:60px;
+  background-color:#A13D63;
+  margin: 5px;
+  padding: 4px;
+  -webkit-border-radius: 50px !important;
+  -moz-border-radius: 50px !important;
+  border-radius: 50px;
+  font-size:5em;
+  line-height:32px;
+  float:right;
+  color:#fff;
+  text-decoration:none;
+  -webkit-transition-duration: 0.4s;
+}
+#add:hover{
+  color: #A13D63;
+  background-color: #fff;
+  border-color: #A13D63;
+  cursor: pointer;
+}
