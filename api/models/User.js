@@ -4,34 +4,39 @@
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
-
+const bcrypt = require('bcrypt');
 module.exports = {
 
   attributes: {
-    accountNumber: {
+    id: {
       type: "string",
       required: true,
       maxLength: 9,
-      // isNumber: true,
+      regex: /^(31)[0-9]{7}/,
     },
     name: {
       type: "string",
       required: true,
-      // isString: true,
       maxLength: 30,
-    },
-    email:{
-      type: "string",
-      isEmail: true,
     },
     password:{
       type: "string",
       required: true,
     },
     description:{
-       type: "string", //Aquí quieroo algo más grande, pero no sé qué usar
+       type: "string",
        maxLength: 200,
     },
+    signedUp: {
+      collection: 'Advisory',
+      via: 'advice',
+    },
+  },
+    beforeCreate : function(data, proceed){
+      bcrypt.hash(data.password, 3, (err, hash)=>{
+        data.password = hash;
+        return proceed();
+      });
   },
 
 };

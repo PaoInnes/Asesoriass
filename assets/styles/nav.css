@@ -1,0 +1,16 @@
+/* COLORES
+  Café: #463f3a
+  Gris-café: #8a817c
+  Gris: #bcb8b1
+  Blanco: #f4f3ee
+  Rosa: #e0afa0
+*/
+.navbar{
+  background-color: #8a817c !important;
+  font-size: 2em;
+  color: #e0afa0 !important;
+}
+#navbarTogglerDemo02{
+  font-size: 1em !important;
+
+}

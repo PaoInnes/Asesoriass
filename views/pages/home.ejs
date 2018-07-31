@@ -2,10 +2,43 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Asesoríass</title>
   </head>
   <body>
-    <a href="/registry">Registrarse</a></br>
-    <a href="/login">Ingresar</a>
+    <div class="modal fade" id="modalLogUp" tabindex="-1" role="dialog" aria-labelledby="modalll2" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalll2">Registro</h5>
+          </div>
+          <div class="modal-body">
+            <!-- <form action="/logup" method="post"> -->
+              <div class="form-group">
+                  <label for="accountNumber">*Número de cuenta: </label>
+                  <input type="text" class="form-control" id="accountNumberUp" />
+              </div>
+              <div class="form-group">
+                  <label for="userName"  class="col-form-label">*Nombre de usuario: </label>
+                  <input type="text" class="form-control" id="userName" />
+              </div>
+              <div class="form-group">
+                  <label for="password"  class="col-form-label">*Contraseña: </label>
+                  <input type="password" class="form-control" id="pass" />
+                  <label for="password2"  class="col-form-label">*Confirmar contraseña: </label>
+                  <input type="password" class="form-control" id="pass2" />
+              </div>
+              <div class="form-group">
+                  <label for="description"  class="col-form-label">Descripción: </label>
+                  <textarea class="form-control" id="description" placeholder="Me gustan las mates y los perros"></textarea>
+              </div>
+              *Campos obligarotios
+              <div class="modal-footer">
+                <button class="btn btn-primary" id="Registrarse">Registrarse</button>
+              </div>
+          <!-- </form> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <script src="\views\pages\js\logup.js"></script> -->
   </body>
 </html>

@@ -8,19 +8,12 @@
 module.exports = {
 
   attributes: {
-    idAdvisory:{
+    id:{
       type: "number",
       autoIncrement: true,
     },
     accountNumber: {
-      type: "string",
-      required: true,
-      maxLength: 9,
-      // isNumber: true,s
-    },
-    nameAdviser: {
-      type: "string",
-      required: true,
+      model: "User",
     },
     quota: {
       type: "number",
@@ -44,10 +37,10 @@ module.exports = {
       type: "string",
       maxLength: 20,
     },
-    description: { //Qué temas sabe y en qué los puede ayudar
-      type: "string",
-      maxLength: 200,
-    },
+    advice: {
+      collection: 'User',
+      via: 'signedUp'
+    }
   },
 
 };
