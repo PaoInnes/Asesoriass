@@ -26,11 +26,15 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <div id="cambio">
-
-        </div>
+        <div id="cambio"></div>
         <form class="form-inline my-2 my-lg-0" action="/search" method="get">
-          <input class="form-control mr-sm-2" type="search" placeholder="318238763">
+          <select class="form-control form-control-lg" name="subject">
+            <% var subjects = ["Historia Universal", "Lengua Española", "Matematicas IV", "Lógica", "Historia de México",
+            "Literatura Universal", "Matematicas V", "Ética", "Quiímica", "Informática", "Biología", "Física"]; %>
+            <%for (var sub of subjects) { %>
+              <option value="<%= sub%>"><%= sub%></option>
+            <% } %>
+          </select>
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
         </form>
       </div>

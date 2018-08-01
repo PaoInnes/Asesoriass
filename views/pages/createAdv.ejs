@@ -43,6 +43,11 @@
           </select>
         </div>
       </div>
+      <div class="form-group">
+        <label for="days">Escirbe sobre qué temas podrías ayudar</label>
+        <input type="textarea" class="form-group" id="description" placeholder="Sé temas como la guerra de los pastelas, la ilustración..." aria-describedby="help"/>
+        <small id="Help" class="form-text text-muted">Máximo 100 caracteres.</small>
+      </div>
       <button class="btn btn-primary" id="create">Crear</button>
     </div>
   </body>
@@ -65,19 +70,30 @@
     if (ok == 5 && daysChecked != ""){
       let ends = parseInt($("#ends").val())
       let starts = parseInt($("#starts").val())
-      if( (starts < ends) && (7>=starts) && (starts<=20) && (8>=ends) && (ends<=21) ){
-        $.ajax({
-          url: "/create",
-          method: "post",
-          data:{
-            subject : $("#subject").val(),
-            quota : $("#quota").val(),
-            starts : $("#starts").val(),
-            ends : $("#ends").val(),
-            classroom : $("#classroom").val(),
-            days : daysChecked,
-          }
-        });
+      if( (starts < ends) && (7<=starts) && (starts<=20) && (8<=ends) && (ends<=21) ){
+        if ($("#description").val().length < 101 && $("#quota").val() < 21){
+          $.ajax({
+            url: "/create",
+            method: "post",
+            data:{
+              subject : $("#subject").val(),
+              quota : $("#quota").val(),
+              starts : $("#starts").val(),
+              ends : $("#ends").val(),
+              classroom : $("#classroom").val(),
+              days : daysChecked,
+              desc: $("#description").val(),
+            }
+          }).done(()=>{
+            window.location= "/";
+          });
+        }
+        else {
+          swal({
+            title: "Sólo puedes aceptar 20 compañeros, y máximo 100 caracteres el la descripción",
+            icon: "error",
+          });
+        }
       }
       else {
         swal({

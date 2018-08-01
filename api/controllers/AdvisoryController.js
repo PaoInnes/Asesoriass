@@ -8,18 +8,24 @@
 module.exports = {
   create:async function(req, res) {
     try {
-      let advi = await Advisory.create({
+      await Advisory.create({
         accountNumber: req.session.id,
         quota: req.body.quota,
         days: req.body.days,
         starts: req.body.starts,
         ends: req.body.ends,
         classroom: req.body.classroom,
-        subject: req.body.subject
-      }).fetch();
-
+        subject: req.body.subject,
+        description: req.body.desc,
+      });
+      return res.ok();
     } catch (error){
-      console.log(error);;
+        res.serverError(error);
     }
+  },
+  getAll: function(req,res) {
+    Advisory.find().exec((err,advs)=>{
+      return res.view("pages/home",{"advs": JSON.stringify(advs)});
+    })
   }
 };

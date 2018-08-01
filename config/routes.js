@@ -16,9 +16,7 @@ module.exports.routes = {
   //  ╚╩╝╚═╝╚═╝╩  ╩ ╩╚═╝╚═╝╚═╝
 
 
-  '/': {
-    view: 'pages/home'
-  },
+  '/': 'AdvisoryController.getAll',
   '/login': {
     view: 'pages/login'
   },

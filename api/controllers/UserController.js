@@ -40,7 +40,7 @@ module.exports = {
 
           else if (resp){ //si todo está chido
             req.session.userId = user.id;
-            return res.view("pages/home");
+            return res.redirect("/");
           }
           //Si está mal la contraseña
           else
@@ -54,7 +54,7 @@ module.exports = {
   },
   logout: function(req, res) {
     delete req.session.userId;
-    return res.view("pages/home");
+    return res.redirect("/");
   },
 
 };

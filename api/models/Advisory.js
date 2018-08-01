@@ -35,7 +35,10 @@ module.exports = {
     },
     classroom: {
       type: "string",
-      maxLength: 5,
+    },
+    description: {
+      type: "string",
+      maxLength: 100,
     },
     subject: {
       type: "string",
