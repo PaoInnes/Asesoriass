@@ -7,6 +7,12 @@
  const bcrypt = require('bcrypt');
 
 module.exports = {
+  auth: function(req, res) {
+    if(req.session.userId)
+      return res.send(req.session.userId);
+    else
+      return res.send("nope");
+  },
   logup: async function(req, res) {
       try {
         let user = await User.create({
@@ -32,17 +38,23 @@ module.exports = {
           if (err) //si hay un error
           return res.view("pages/login", {error: "Algo anda mal y no hemos podido inciar tu sesión"});
 
-          if (resp){ //si todo está chido
+          else if (resp){ //si todo está chido
             req.session.userId = user.id;
             return res.view("pages/home");
           }
           //Si está mal la contraseña
-          return res.view("pages/login", {error: "Verfifica tus datos"});
+          else
+            return res.view("pages/login", {error: "Verfifica tus datos"});
 
         })
       }
     }
-    return res.view("pages/login", {error: "Ingresa un usuario"});
-  }
+    else
+      return res.view("pages/login", {error: "Ingresa un usuario"});
+  },
+  logout: function(req, res) {
+    delete req.session.userId;
+    return res.view("pages/home");
+  },
 
 };
