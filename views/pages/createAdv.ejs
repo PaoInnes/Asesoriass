@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="form-group">
+        <label for="subject">Selecciona la materia</label>
+        <select type="" class="form-control form-control-lg" id="subject">
+          <% var subjects = ["Historia Universal", "Lengua Española", "Matematicas IV", "Lógica", "Historia de México",
+          "Literatura Universal", "Matematicas V", "Ética", "Quiímica", "Informática", "Biología", "Física"]; %>
+          <%for (var sub of subjects) { %>
+            <option value="<%= sub%>"><%= sub%></option>
+          <% } %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="days">Selecciona los días</label>
+        <% var days = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]; %>
+        <%for (var day of days) { %>
+            <input type="checkbox" class="form-group col-md-1" id="<%= day%>" value="<%= day%>"><%= day%>
+        <% } %>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="quota">Selecciona el cupo</label>
+          <input class="form-control" type="number" min=1 max=20 id="quota"/>
+        </div>
+        <div class="form-group col-md-4">
+          Empieza: <input class="form-control" type="time" min="7:00" max="20:00" name="starts" id="starts"/>
+          Termina: <input class="form-control" type="time" min="8:00" max="21:00" name="ends" id="ends"/>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="classroom">Salón</label>
+          <select class="form-control" id="classroom">
+            <% var classrooms = ["B-7", "A-106", "C-8", "A-102", "D-6","C-4", "C-106"]; %>
+            <%for (var room of classrooms) { %>
+              <option value="<%= room%>"><%= room%></option>
+              <% } %>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="create">Crear</button>
+    </div>
+  </body>
+  <script>
+  $("#create").on("click",()=>{
+    var days = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]; //Al parecer lo de ejs no se puede utilizar aquí
+    let daysChecked = new Array;
+    let ok = 0;
+    var elements = ["subject", "quota", "starts", "ends", "classroom"];
+
+    for (day of days) //Chechar que haya marcado al menos un día
+      if ($("#" + day). prop("checked"))
+        daysChecked.push(day);
+
+    for (ele of elements) //Checar que haya llenaro todos los campos
+      if ($("#"+ ele).val() != "")
+        ok++;
+
+
+    if (ok == 5 && daysChecked != ""){
+      let ends = parseInt($("#ends").val())
+      let starts = parseInt($("#starts").val())
+      if( (starts < ends) && (7>=starts) && (starts<=20) && (8>=ends) && (ends<=21) ){
+        $.ajax({
+          url: "/create",
+          method: "post",
+          data:{
+            subject : $("#subject").val(),
+            quota : $("#quota").val(),
+            starts : $("#starts").val(),
+            ends : $("#ends").val(),
+            classroom : $("#classroom").val(),
+            days : daysChecked,
+          }
+        });
+      }
+      else {
+        swal({
+          title: "Ingresa un horario válido",
+          icon: "error",
+          text: "Está permitido desde las 7:00 hasta las 21:00. Puede comenzar después de las 7am y hasta las 8pm, terminar después de las 8am y hasta las 9pm y durar mínimo una hora",
+        });
+      }
+    }
+    else {
+      swal({
+        title: "Asegúrate de ingresar datos correctos y llenar todos los campos :)",
+        icon: "error",
+      });
+    }
+  });
+  </script>
+</html>

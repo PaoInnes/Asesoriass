@@ -17,21 +17,25 @@ module.exports = {
     },
     quota: {
       type: "number",
-      min: 1, //Aquí podría ocasionar un error en el futuro
+      min: 0, //Aquí podría ocasionar un error en el futuro
       max: 20,
       required: true,
     },
     days:{
-      type: "string",
+      type: "json",
       required: true,
     },
-    hour: {
+    starts: {
+      type: "string",
+      maxLength: 5,
+    },
+    ends: {
       type: "string",
       maxLength: 5,
     },
     classroom: {
       type: "string",
-      maxLength: 3,
+      maxLength: 5,
     },
     subject: {
       type: "string",

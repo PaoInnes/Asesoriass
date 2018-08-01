@@ -25,10 +25,13 @@ module.exports.routes = {
   '/logup': {
     view: 'pages/logup'
   },
+  '/create': {
+    view: 'pages/createAdv'
+  },
   'post /login': 'UserController.login',
   'post /logup': 'UserController.logup',
   '/logout': 'UserController.logout',
   'post /auth' : 'UserController.auth',
-
+  'post /create': 'AdvisoryController.create'
 
 };

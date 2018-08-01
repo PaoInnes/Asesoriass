@@ -44,7 +44,7 @@ module.exports = {
           }
           //Si está mal la contraseña
           else
-            return res.view("pages/login", {error: "Verfifica tus datos"});
+            return res.view("pages/login", {error: "Verfifica tus datos"}); //Dijo Carlos que por seguridad no hayq ue mandar que está mal la contraseña
 
         })
       }
