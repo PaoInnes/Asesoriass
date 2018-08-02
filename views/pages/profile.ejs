@@ -15,7 +15,7 @@
         padding: 10px;
         text-align: center;
       }
-      button{
+      .camb{
         margin: 0 42.5% !important;
         background-color: #e0afa0 !important;
         border-color: white !important;
@@ -31,8 +31,8 @@
       <div><%= user.id %> </div>
       <div ><%= user.name %> </div>
       <div contenteditable="true"><%= user.description %> </div>
-      <button id="desc" class="btn btn-primary">Actualizar descripción</button>
-      <button class="btn btn-primary">Cambiar contraseña</button>
+      <button id="desc" class="btn btn-primary camb">Actualizar descripción</button>
+      <button class="btn btn-primary camb" data-toggle="modal" data-target="#modalPass">Cambiar contraseña</button>
     </div>
     <div class="container" id="solis">
 
@@ -43,8 +43,43 @@
     <div class="container" id="porDar">
 
     </div>
+
+    <!-- Modal para cambiar contraseña -->
+    <!-- Modal -->
+    <div class="modal fade" id="modalPass" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Cambiar contraseña</h5>
+          </div>
+          <div class="modal-body">
+            <div class="form-group row">
+              <label for="pass" class="col-sm-2 col-form-label">Contraseña</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="pass" placeholder="Password">
+              </div>
+            </div><div class="form-group row">
+              <label for="newpass" class="col-sm-2 col-form-label">Nueva contraseña</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control news" id="newpass" placeholder="Password">
+              </div>
+            </div><div class="form-group row">
+              <label for="newpass2" class="col-sm-2 col-form-label">Confimar contraseña</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control news" id="newpass2" placeholder="Password">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" id="change">Cambiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
   <script type="text/javascript">
+
     let elem = ["porDar", "porTomar"]
     for(ele of elem){
       $.ajax({
@@ -79,17 +114,43 @@
         method: "put"
       })
       .done(()=>{
-        swal({
-          title: "Se actualizó tu descripción",
-          icon: "success"
-        });
+        swal({title: "Se actualizó tu descripción", icon: "success"});
       })
-      .fail(()=>{
-        swal({
-          title: "No se puede actualizar en este momento, intenta más tarde",
-          icon: "error"
-        });
-      })
+      .fail(()=>{ swal({ title: "No se puede actualizar en este momento, intenta más tarde", icon: "error" }); });
+    });
+
+    //Cambiar conraseña
+    $("#change").click(()=>{
+      pass = $("#pass").val();
+      newPass = $("#newpass").val();
+      newPass2 = $("#newpass2").val();
+
+      if(pass != ""){
+        if (newPass2 == newPass) {
+          if (newpass == ""){ //Ni idea de porqué es igual
+            $.ajax({
+              url : "/pass",
+              data: {
+                new : newPass,
+                old : pass,
+              },
+              method: "put"
+            })
+            .done((resp)=>{
+              if(resp != "bep"){
+                swal({title: "Se actualizó tu contraseña", icon: "success"});
+                ("#modalPass").modal("hide")
+              } else
+                swal({ title: "Contraseña incorrecta", icon: "error" });
+            })
+            .fail(()=>{ swal({ title: "No se puede actualizar en este momento, intenta más tarde", icon: "error" });});
+          } else
+              $(".news").attr({"class":"form-control is-invalid"});
+        } else
+            swal({ title: "Las contraseñas no coinciden", icon: "error" });
+      } else
+          $("#pass").attr({"class":"form-control is-invalid","style":"color:red"});
+
     });
   </script>
 </html>

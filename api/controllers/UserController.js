@@ -31,7 +31,7 @@ module.exports = {
     if (req.body.accountNumberIn) {
       let user = await User.findOne({id: req.body.accountNumberIn});
       if(!user)//si no encuentra el usuario avisar que no está registrado
-      return res.view("pages/login", {error: "No se encontró el usuario"});
+        return res.view("pages/login", {error: "No se encontró el usuario"});
 
       else{
         bcrypt.compare(req.body.password,user.password,(err, resp)=>{
@@ -46,7 +46,7 @@ module.exports = {
           else
             return res.view("pages/login", {error: "Verfifica tus datos"}); //Dijo Carlos que por seguridad no hayq ue mandar que está mal la contraseña
 
-        })
+        });
       }
     }
     else
@@ -62,11 +62,11 @@ module.exports = {
       if (err) {
         return res.serverError();
       }
+      req.session.userPass = user.password;
       return res.view("pages/profile",{"user" : JSON.stringify(user)})
     })
   },
   updateDesc: function(req, res) {
-    // console.log(req.body.new);
     User.update(
       {id : req.session.userId},
       {description: req.body.new}
@@ -75,5 +75,24 @@ module.exports = {
             return res.serverError();
         return res.ok();
     });
-  }
+  },
+  updatePass: function(req, res) {
+    try {
+      bcrypt.compare(req.body.old, req.session.userPass,(err, resp)=>{
+        if (resp) {
+          bcrypt.hash(req.body.new, 3, (err, hash)=>{
+            User.update(
+              {id : req.session.userId},
+              {password: hash}
+            ).exec((error)=>{
+              return res.ok();
+            })
+          });
+        }else
+          return res.send("bep");
+      });
+    } catch (error) {
+      return res.serverError();
+    };
+  },
 };
