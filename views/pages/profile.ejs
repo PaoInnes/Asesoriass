@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+      #info{
+        margin: 5% 10%;
+        background-color: #bcb8b1;
+        padding: 10px;
+        border-radius: 10px;
+      }
+      #info div{
+        padding: 10px;
+        text-align: center;
+      }
+      button{
+        margin: 0 42.5% !important;
+        background-color: #e0afa0 !important;
+        border-color: white !important;
+      }
+      #desc{
+        margin: 2% 42% !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="info">
+      <% user = JSON.parse(user) %>
+      <div><%= user.id %> </div>
+      <div ><%= user.name %> </div>
+      <div contenteditable="true"><%= user.description %> </div>
+      <button id="desc" class="btn btn-primary">Actualizar descripción</button>
+      <button class="btn btn-primary">Cambiar contraseña</button>
+    </div>
+    <div class="container" id="solis">
+
+    </div>
+    <div class="container" id="porTomar">
+
+    </div>
+    <div class="container" id="porDar">
+
+    </div>
+  </body>
+  <script type="text/javascript">
+    let elem = ["porDar", "porTomar"]
+    for(ele of elem){
+      $.ajax({
+        url: "/"+ele,
+        method: "POST",
+      }).done((response)=>{
+        var aux = JSON.parse(response);
+        for (var ase of aux){
+          let maq = "<div class=\"container\" style=\"margin-top: 15px;\">"
+            maq += "<a href=\"#\" class=\"list-group-item list-group-item-action flex-column align-items-start\">"
+              maq += "<div class=\"d-flex w-100 justify-content-between\">"
+                maq += "<h5 class=\"mb-1\">"+ ase.subject +"</h5>"
+                maq += "<small>"+ ase.starts +"-"+ ase.ends +"</small>"
+              maq += "</div>"
+              maq += "<p class=\"mb-1\">"+ ase.description +"</p>"
+              maq += "<small>" + ase.days + "</small>"
+            maq += "</a>"
+          maq += "</div>"
+          $("#"+ ele).append(maq);
+        }
+      })
+    }
+
+    //Editar info
+    $("#desc").on("click",()=>{
+      let newDesc = $("div").eq(6).html();
+      $.ajax({
+        url: "/desc",
+        data: {
+          new : newDesc,
+        },
+        method: "put"
+      })
+      .done(()=>{
+        swal({
+          title: "Se actualizó tu descripción",
+          icon: "success"
+        });
+      })
+      .fail(()=>{
+        swal({
+          title: "No se puede actualizar en este momento, intenta más tarde",
+          icon: "error"
+        });
+      })
+    });
+  </script>
+</html>

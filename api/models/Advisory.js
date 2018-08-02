@@ -12,7 +12,7 @@ module.exports = {
       type: "number",
       autoIncrement: true,
     },
-    accountNumber: {
+    asesor: {
       model: "User",
     },
     quota: {
@@ -44,7 +44,7 @@ module.exports = {
       type: "string",
       maxLength: 20,
     },
-    advice: {
+    alumnos: {
       collection: 'User',
       via: 'signedUp'
     }

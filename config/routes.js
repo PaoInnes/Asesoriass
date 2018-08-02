@@ -29,6 +29,9 @@ module.exports.routes = {
   'post /logup': 'UserController.logup',
   '/logout': 'UserController.logout',
   'post /auth' : 'UserController.auth',
+  '/profile': 'UserController.profile',
+  'put /desc': 'UserController.updateDesc',
+  'put /pass': 'UserController.updatePass',
 
   //De asesorías
   'post /create': 'AdvisoryController.create',
@@ -36,6 +39,9 @@ module.exports.routes = {
   '/create': {
     view: 'pages/createAdv'
   },
+  'post /porDar': 'AdvisoryController.porDar',
+  'post /porTomar': 'AdvisoryController.porDar'
+
 
 
 };

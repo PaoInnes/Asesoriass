@@ -7,8 +7,7 @@ $.ajax({ //Checar si ya Inició sesión, para armar nav dependiendo si sí ingre
   user = data;
   let LoggedIn; //no sé ni pq le puse así pero meh jajaja
   if (data == "nope"){
-    LoggedIn = "<ul class=\"navbar-nav mr-auto mt-2 mt-lg-0\">";
-      LoggedIn += "<li class=\"nav-item\">";
+      LoggedIn = "<li class=\"nav-item\">";
         LoggedIn += "<a class=\"nav-link\" href=\"/login\">Ingresar</a>";
       LoggedIn += "</li>";
       LoggedIn += "<li class=\"nav-item\">";
@@ -17,13 +16,12 @@ $.ajax({ //Checar si ya Inició sesión, para armar nav dependiendo si sí ingre
     LoggedIn += "</ul>";
   }
   else {
-    LoggedIn ="<ul class=\"navbar-nav mr-auto mt-2 mt-lg-0\">";
-      LoggedIn +="<li class=\"nav-item dropdown\">";
+      LoggedIn ="<li class=\"nav-item dropdown\">";
         LoggedIn +="<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"profile\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">";
           LoggedIn +="Perfil";
         LoggedIn +="</a>";
         LoggedIn +="<div class=\"dropdown-menu\" aria-labelledby=\"profile\">";
-          LoggedIn +="<a class=\"dropdown-item\" href=\"/profile/" + data +"\">Mi perfil</a>";
+          LoggedIn +="<a class=\"dropdown-item\" href=\"/profile\">Mi perfil</a>";
           LoggedIn +="<a class=\"dropdown-item\" href=\"/logout\">Cerrar sesión</a>";
         LoggedIn +="</div>";
       LoggedIn +="</li>";

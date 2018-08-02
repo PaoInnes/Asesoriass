@@ -9,7 +9,7 @@ module.exports = {
   create:async function(req, res) {
     try {
       await Advisory.create({
-        accountNumber: req.session.id,
+        asesor: req.session.userId,
         quota: req.body.quota,
         days: req.body.days,
         starts: req.body.starts,
@@ -37,9 +37,18 @@ module.exports = {
       if (err) {
         return res.serverError();
       }
-      else {
-        return res.view("pages/home",{"advs": JSON.stringify(ases)});
-      }
+      return res.view("pages/home",{"advs": JSON.stringify(ases)});
+
     });
-  }
+  },
+  porDar:function(req,res) {
+    Advisory.find({asesor: req.session.userId})
+    .exec((err, ases)=>{
+      // console.log(ases);
+      if (err) {
+        return res.serverError();
+      }
+      return res.json(JSON.stringify(ases));
+    });
+  },
 };

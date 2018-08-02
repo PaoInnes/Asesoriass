@@ -28,7 +28,7 @@ module.exports = {
     },
     signedUp: {
       collection: 'Advisory',
-      via: 'advice',
+      via: 'alumnos',
     },
   },
   beforeCreate : function(data, proceed){

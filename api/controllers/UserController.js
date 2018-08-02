@@ -56,5 +56,24 @@ module.exports = {
     delete req.session.userId;
     return res.redirect("/");
   },
-
+  profile: function(req, res) {
+    User.findOne({id : req.session.userId})
+    .exec((err, user)=>{
+      if (err) {
+        return res.serverError();
+      }
+      return res.view("pages/profile",{"user" : JSON.stringify(user)})
+    })
+  },
+  updateDesc: function(req, res) {
+    // console.log(req.body.new);
+    User.update(
+      {id : req.session.userId},
+      {description: req.body.new}
+    ).exec((error)=>{
+        if (error)
+            return res.serverError();
+        return res.ok();
+    });
+  }
 };

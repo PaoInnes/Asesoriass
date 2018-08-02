@@ -17,6 +17,16 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  // '*': true,
+  '*': true,
+  
+  UserController: {
+    "*": true,
+    profile: 'sessionAuth'
+  },
 
+  AdvisoryController: {
+    "*": true,
+    create: 'sessionAuth',
+    porDar: 'sessionAuth',
+  }
 };

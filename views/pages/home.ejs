@@ -6,7 +6,6 @@
 
   </head>
   <body>
-    <% console.log(advs); %>
     <% ases = JSON.parse(advs);%>
     <% if (ases != ""){%>
       <div class="list-group">
@@ -17,11 +16,7 @@
                 <h5 class="mb-1"><%= adv.subject %></h5>
                 <small><%= adv.starts%> - <%= adv.ends%></small>
               </div>
-              <% if (adv.description == "s"){%>
-                <p class="mb-1">Esta asesoría no tiene descripción</p>
-              <% } else{ %>
-                <p class="mb-1"><%= adv.description %></p>
-              <% } %>
+              <p class="mb-1"><%= adv.description %></p>
               <small><%= adv.days %></small>
             </a>
           </div>
