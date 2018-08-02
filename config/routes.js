@@ -17,19 +17,25 @@ module.exports.routes = {
 
 
   '/': 'AdvisoryController.getAll',
+
+  //de usuarios
   '/login': {
     view: 'pages/login'
   },
   '/logup': {
     view: 'pages/logup'
   },
-  '/create': {
-    view: 'pages/createAdv'
-  },
   'post /login': 'UserController.login',
   'post /logup': 'UserController.logup',
   '/logout': 'UserController.logout',
   'post /auth' : 'UserController.auth',
-  'post /create': 'AdvisoryController.create'
+
+  //De asesorías
+  'post /create': 'AdvisoryController.create',
+  'get /search': 'AdvisoryController.search',
+  '/create': {
+    view: 'pages/createAdv'
+  },
+
 
 };

@@ -6,25 +6,31 @@
 
   </head>
   <body>
-    <div class="list-group">
-      <% ases = JSON.parse(advs)%>
-      <% for (let adv of ases) {%>
-        <div class="container" style="margin-top: 15px;">
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1"><%= adv.subject %></h5>
-              <small><%= adv.starts%> - <%= adv.ends%></small>
-            </div>
-            <% if (adv.description == ""){%>
-              <p class="mb-1">Esta asesoría no tiene descripción</p>
-            <% } else{ %>
-              <p class="mb-1"><%= adv.description %></p>
-            <% } %>
-            <small><%= adv.days %></small>
-          </a>
-        </div>
-      <% } %>
-    </div>
+    <% console.log(advs); %>
+    <% ases = JSON.parse(advs);%>
+    <% if (ases != ""){%>
+      <div class="list-group">
+        <% for (let adv of ases) {%>
+          <div class="container" style="margin-top: 15px;">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1"><%= adv.subject %></h5>
+                <small><%= adv.starts%> - <%= adv.ends%></small>
+              </div>
+              <% if (adv.description == "s"){%>
+                <p class="mb-1">Esta asesoría no tiene descripción</p>
+              <% } else{ %>
+                <p class="mb-1"><%= adv.description %></p>
+              <% } %>
+              <small><%= adv.days %></small>
+            </a>
+          </div>
+        <% } %>
+      </div>
+    <% } else {%>
+      <div class="container" style="margin-top:40%;"><div class="alert alert-warning">No hemos encontrado ninguna asesoría ):</div><div>
+    <% } %>
+
   </body>
   <script type="text/javascript">
 

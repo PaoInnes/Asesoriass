@@ -8,7 +8,7 @@ $.ajax({ //Checar si ya Inició sesión, para armar nav dependiendo si sí ingre
   let LoggedIn; //no sé ni pq le puse así pero meh jajaja
   if (data == "nope"){
     LoggedIn = "<ul class=\"navbar-nav mr-auto mt-2 mt-lg-0\">";
-      LoggedIn += "<li class=\"nav-item disabled\">";
+      LoggedIn += "<li class=\"nav-item\">";
         LoggedIn += "<a class=\"nav-link\" href=\"/login\">Ingresar</a>";
       LoggedIn += "</li>";
       LoggedIn += "<li class=\"nav-item\">";

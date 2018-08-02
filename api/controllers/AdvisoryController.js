@@ -25,7 +25,21 @@ module.exports = {
   },
   getAll: function(req,res) {
     Advisory.find().exec((err,advs)=>{
+      if (err) {
+        return ser.serverError();
+      }
       return res.view("pages/home",{"advs": JSON.stringify(advs)});
     })
+  },
+  search: async function(req, res) {
+     Advisory.find({subject : req.query.subject})
+    .exec((err, ases)=>{
+      if (err) {
+        return res.serverError();
+      }
+      else {
+        return res.view("pages/home",{"advs": JSON.stringify(ases)});
+      }
+    });
   }
 };
