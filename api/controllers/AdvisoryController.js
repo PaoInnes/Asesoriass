@@ -51,6 +51,19 @@ module.exports = {
       return res.json(ases);
     });
   },
+  porTomar: function(req, res){
+    Asesorados.find({
+      asesorado: req.session.userId,
+      estado: "Aceptado",
+    })
+    .exec((err, ases)=>{
+      // console.log(ases);
+      if (err) {
+        return res.serverError();
+      }
+      return res.json(ases);
+    });
+  }
   see: async function(req, res) {
     try {
       var ase = await Advisory.findOne({id : req.query.idAdv});
@@ -60,13 +73,12 @@ module.exports = {
           return res.json(("[" + JSON.stringify(ase) + ", {\"canRequest\":\"false\"},{\"IsProf\" : \"true\"}]"));
         else {
           // console.log(req.query.idAdv,  req.session.userId);
-          var estado = await Asesorados.findOne({ //Checar si ya pidió inscribirse
-            id : req.query.idAdv,
+          var est = await Asesorados.findOne({ //Checar si ya pidió inscribirse
+            asesoria : req.query.idAdv,
             asesorado : req.session.userId
-          }, {estado});
-          // console.log(estado);
-          if (estado) //Si ya lo pidió, mandar el estado de la petición
-            return res.json("["+ JSON.stringify(ase) +",{\"canRequest\":\"true\"},{\"estado\": \""+ estado +"\"}]");
+          });
+          if (est) //Si ya lo pidió, mandar el estado de la petición
+            return res.json("["+ JSON.stringify(ase) +",{\"canRequest\":\"true\"},{\"estado\": \""+ est.estado +"\"}]");
           else
             return res.json("["+ JSON.stringify(ase) +",{\"canRequest\":\"true\"}]");
         }
@@ -74,13 +86,12 @@ module.exports = {
       else
         return res.json("["+ JSON.stringify(ase) +",{\"canRequest\":\"false\"}]");
     } catch (e) {
-      // console.log(e);
       return res.serverError();
     }
   },
-  request: function(res, res) {
+  request: function(req, res) {
     Asesorados.create({
-      asesoria: req.session.idAdv,
+      asesoria: req.body.idAdv,
       asesorado: req.session.userId
     }).exec((err)=>{
       if (err)
