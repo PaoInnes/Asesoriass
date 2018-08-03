@@ -28,16 +28,16 @@ module.exports = {
       if (err) {
         return ser.serverError();
       }
-      return res.view("pages/home",{"advs": JSON.stringify(advs)});
+      return res.view("pages/home", {"ases": advs});
     })
   },
-  search: async function(req, res) {
+  find: async function(req, res) {
      Advisory.find({subject : req.query.subject})
     .exec((err, ases)=>{
-      if (err) {
+      if (err)
         return res.serverError();
-      }
-      return res.view("pages/home",{"advs": JSON.stringify(ases)});
+      else
+        return res.view("pages/home", {"ases": ases});
 
     });
   },
@@ -48,7 +48,50 @@ module.exports = {
       if (err) {
         return res.serverError();
       }
-      return res.json(JSON.stringify(ases));
+      return res.json(ases);
     });
+  },
+  see: async function(req, res) {
+    try {
+      var ase = await Advisory.findOne({id : req.query.idAdv});
+      // console.log(ase);
+      if (req.session.userId) { //Si está registrado
+        if(ase.asesor == req.session.userId) //Si es su asesoría
+          return res.json(("[" + JSON.stringify(ase) + ", {\"canRequest\":\"false\"},{\"IsProf\" : \"true\"}]"));
+        else {
+          // console.log(req.query.idAdv,  req.session.userId);
+          var estado = await Asesorados.findOne({ //Checar si ya pidió inscribirse
+            id : req.query.idAdv,
+            asesorado : req.session.userId
+          }, {estado});
+          // console.log(estado);
+          if (estado) //Si ya lo pidió, mandar el estado de la petición
+            return res.json("["+ JSON.stringify(ase) +",{\"canRequest\":\"true\"},{\"estado\": \""+ estado +"\"}]");
+          else
+            return res.json("["+ JSON.stringify(ase) +",{\"canRequest\":\"true\"}]");
+        }
+      }
+      else
+        return res.json("["+ JSON.stringify(ase) +",{\"canRequest\":\"false\"}]");
+    } catch (e) {
+      // console.log(e);
+      return res.serverError();
+    }
+  },
+  request: function(res, res) {
+    Asesorados.create({
+      asesoria: req.session.idAdv,
+      asesorado: req.session.userId
+    }).exec((err)=>{
+      if (err)
+        return res.serverError();
+      return res.ok();
+    });
+  },
+  destroy: function(req, attributes) {
+
+  },
+  update: function() {
+
   },
 };

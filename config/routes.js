@@ -34,14 +34,15 @@ module.exports.routes = {
   'put /pass': 'UserController.updatePass',
 
   //De asesorías
-  'post /create': 'AdvisoryController.create',
-  'get /search': 'AdvisoryController.search',
   '/create': {
     view: 'pages/createAdv'
   },
+  'post /create': 'AdvisoryController.create',
+  'get /search': 'AdvisoryController.find',
   'post /porDar': 'AdvisoryController.porDar',
-  'post /porTomar': 'AdvisoryController.porDar'
-
+  'post /porTomar': 'AdvisoryController.porDar',
+  'post /request': 'AdvisoryController.request',
+  'get /see': 'AdvisoryController.see',
 
 
 };

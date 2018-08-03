@@ -26,10 +26,6 @@ module.exports = {
        type: "string",
        maxLength: 200,
     },
-    signedUp: {
-      collection: 'Advisory',
-      via: 'alumnos',
-    },
   },
   beforeCreate : function(data, proceed){
     bcrypt.hash(data.password, 3, (err, hash)=>{

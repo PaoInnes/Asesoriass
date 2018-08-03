@@ -4,7 +4,6 @@
     <meta charset="utf-8">
   </head>
   <body>
-    <% ases = JSON.parse(advs);%>
     <% if (ases != ""){%>
       <div class="list-group">
         <% for (let adv of ases) {%>
@@ -16,12 +15,54 @@
               </div>
               <p class="mb-1"><%= adv.description %></p>
               <small><%= adv.days %></small>
+              <button id="<%= adv.id%>" class="btn btn-outline my-sm-0 verAse">Ver asesoría</button>
             </a>
           </div>
+           <!-- data-toggle="modal" data-target="#modalAse" -->
         <% } %>
       </div>
     <% } else {%>
       <div class="container" style="margin-top:40%;"><div class="alert alert-warning">No hemos encontrado ninguna asesoría ):</div><div>
     <% } %>
+
   </body>
+  <script type="text/javascript">
+    $(".verAse").on("click",(ev)=>{
+      let espera = new Promise ((resolve, reject)=>{
+        $.ajax({
+          url: "/see",
+          method: "get",
+          data: { idAdv : ev.target.id}
+        })
+        .done((resp)=>{
+          resolve(JSON.parse(resp))
+        })
+        .fail((error)=>{
+          reject(error);
+        })
+      })
+      .then((asesoria)=>{
+        console.log(asesoria);
+        console.log(asesoria[1].canRequire);
+        if ( asesoria[1].canRequire == "false"){
+          console.log("NO puede pedir");
+          $("button")[4].hide();
+        }
+        if( typeof asesoria[2].isProf != "undefined")
+          $("#bodyModalAse").append("<button id=\"editarAse\" class=\"btn btn-outline my-sm-0\">Editar</button>");
+        $("#asesor").html("Asesor: " + asesoria[0].asesor); //Ya sé que da asco, pero lo intenté de mil formas y fracasé
+        $("#subject").html("Materia" + asesoria[0].subject);
+        $("#days").html("Días en los que se imparte: " + asesoria[0].days);
+        $("#quota").html("Cupo: " + asesoria[0].quota);
+        $("#horario").html("Horario" + asesoria[0].starts +"-"+ asesoria[0].ends);
+        $("#classroom").html("Salón" + asesoria[0].classroom);
+        var descripcion = (asesoria[0].description != "")? asesoria[0].description : "Esta asesoria no tiene descripción"
+        $("#description").html("Descripción: " + descripcion);
+        $("#modalAse").modal("show")
+      }).catch((err)=>{
+        // swal error
+        console.log(err);
+      });
+    })
+  </script>
 </html>

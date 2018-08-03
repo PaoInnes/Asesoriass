@@ -63,7 +63,7 @@ module.exports = {
         return res.serverError();
       }
       req.session.userPass = user.password;
-      return res.view("pages/profile",{"user" : JSON.stringify(user)})
+      return res.view("pages/profile",{"user" : user})
     })
   },
   updateDesc: function(req, res) {

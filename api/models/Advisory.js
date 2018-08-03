@@ -44,10 +44,6 @@ module.exports = {
       type: "string",
       maxLength: 20,
     },
-    alumnos: {
-      collection: 'User',
-      via: 'signedUp'
-    }
   },
 
 };

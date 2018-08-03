@@ -2,7 +2,7 @@ $("#create").on("click",()=>{
   var days = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]; //Al parecer lo de ejs no se puede utilizar aquí
   let daysChecked = new Array;
   let ok = 0;
-  var elements = ["subject", "quota", "starts", "ends", "classroom"];
+  var elements = ["materia", "cupo", "empieza", "termina", "salon"];
 
   for (day of days) //Chechar que haya marcado al menos un día
     if ($("#" + day). prop("checked"))
@@ -14,29 +14,26 @@ $("#create").on("click",()=>{
 
 
   if (ok == 5 && daysChecked != ""){
-    let ends = parseInt($("#ends").val())
-    let starts = parseInt($("#starts").val())
+    let ends = parseInt($("#termina").val())
+    let starts = parseInt($("#empieza").val())
     if( (starts < ends) && (7<=starts) && (starts<=20) && (8<=ends) && (ends<=21) ){
-      if ($("#description").val().length < 101 && $("#quota").val() < 21){
+      if ($("#descripcion").val().length < 101 && $("#cupo").val() < 21){
         $.ajax({
           url: "/create",
           method: "post",
           data:{
-            subject : $("#subject").val(),
-            quota : $("#quota").val(),
-            starts : $("#starts").val(),
-            ends : $("#ends").val(),
-            classroom : $("#classroom").val(),
+            subject : $("#materia").val(),
+            quota : $("#cupo").val(),
+            starts : $("#empieza").val(),
+            ends : $("#termina").val(),
+            classroom : $("#salon").val(),
             days : daysChecked,
-            desc: $("#description").val(),
+            desc: $("#descripcion").val(),
           }
         }).done(()=>{
           window.location= "/";
         }).fail((error)=>{
-          swal({
-  title: "Regístrate o inicia sesión apara poder crear una asesoría",
-            icon: "error",
-          });
+          swal({ title: "Regístrate o inicia sesión apara poder crear una asesoría", icon: "error" });
         });
       }
       else

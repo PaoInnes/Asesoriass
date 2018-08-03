@@ -8,9 +8,9 @@
     <div class="container" style="margin-top: 5%;border-radius:10px;">
       <div class="form-group">
         <label for="subject">Selecciona la materia</label>
-        <select type="" class="form-control form-control" id="subject">
+        <select type="" class="form-control form-control" id="materia">
           <% var subjects = ["Historia Universal", "Lengua Española", "Matematicas IV", "Lógica", "Historia de México",
-          "Literatura Universal", "Matematicas V", "Ética", "Quiímica", "Informática", "Biología", "Física"]; %>
+          "Literatura Universal", "Matematicas V", "Ética", "Química", "Informática", "Biología", "Física"]; %>
           <%for (var sub of subjects) { %>
             <option value="<%= sub%>"><%= sub%></option>
           <% } %>
@@ -26,15 +26,16 @@
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="quota">Selecciona el cupo</label>
-          <input class="form-control" type="number" min=1 max=20 id="quota"/>
+          <input class="form-control" type="number" min=1 max=20 id="cupo"/>
+          <small class="form-text text-muted">Máximo 20 alumnos</small>
         </div>
         <div class="form-group col-md-4">
-          Empieza: <input class="form-control" type="time" min="7:00" max="20:00" name="starts" id="starts"/>
-          Termina: <input class="form-control" type="time" min="8:00" max="21:00" name="ends" id="ends"/>
+          Empieza: <input class="form-control" type="time" min="7:00" max="20:00" name="starts" id="empieza"/>
+          Termina: <input class="form-control" type="time" min="8:00" max="21:00" name="ends" id="termina"/>
         </div>
         <div class="form-group col-md-4">
           <label for="classroom">Salón</label>
-          <select class="form-control" id="classroom">
+          <select class="form-control" id="salon">
             <% var classrooms = ["B-7", "A-106", "C-8", "A-102", "D-6","C-4", "C-106"]; %>
             <%for (var room of classrooms) { %>
               <option value="<%= room%>"><%= room%></option>
@@ -44,7 +45,7 @@
       </div>
       <div class="form-group">
         <label for="days">EscrIbe sobre qué temas podrías ayudar</label>
-        <input type="textarea" id="description" class="form-control" row=6 placeholder="Sé temas como la guerra de los pastelas, la ilustración..." aria-describedby="help"/>
+        <input type="textarea" id="descripcion" class="form-control" row=6 placeholder="Sé temas como la guerra de los pastelas, la ilustración..." aria-describedby="help"/>
         <small id="Help" class="form-text text-muted">Máximo 100 caracteres.</small>
       </div>
       <button class="btn btn-primary" id="create">Crear</button>

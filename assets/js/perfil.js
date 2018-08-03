@@ -5,8 +5,8 @@
         url: "/"+ele,
         method: "POST",
       }).done((response)=>{
-        var aux = JSON.parse(response);
-        for (var ase of aux){
+        // var aux = JSON.parse(response);
+        for (var ase of response){
           let maq = "<div class=\"container\" style=\"margin-top: 15px;\">"
             maq += "<a href=\"#\" class=\"list-group-item list-group-item-action flex-column align-items-start\">"
               maq += "<div class=\"d-flex w-100 justify-content-between\">"
