@@ -1,0 +1,18 @@
+  #info{
+    margin: 5% 10%;
+    background-color: #bcb8b1;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  #info div{
+    padding: 10px;
+    text-align: center;
+  }
+  .camb{
+    margin: 0 42.5% !important;
+    background-color: #e0afa0 !important;
+    border-color: white !important;
+  }
+  #desc{
+    margin: 2% 42% !important;
+  }

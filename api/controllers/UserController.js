@@ -36,7 +36,7 @@ module.exports = {
       else{
         bcrypt.compare(req.body.password,user.password,(err, resp)=>{
           if (err) //si hay un error
-          return res.view("pages/login", {error: "Algo anda mal y no hemos podido inciar tu sesión"});
+            return res.view("pages/login", {error: "Algo anda mal y no hemos podido inciar tu sesión"});
 
           else if (resp){ //si todo está chido
             req.session.userId = user.id;
