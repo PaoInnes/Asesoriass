@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title></title>
+  </head>
+  <body id="<%= result[0].id%>">
+    <div class="container" id="detalles">
+      Detalles de tu asesoría:
+      <div class="card"> Materia:
+        <div class="card-body">
+          <%= result[0].subject%>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body"> Descripción de la asesoría
+          <%= result[0].description%>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body"> Días en los que se imparte
+          <%= result[0].days%>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body"> Horario:
+          <%= result[0].starts%> - <%result[1].starts%>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body"> Salón
+          <%= result[0].classroom%>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body"> Cupo:
+          <%= result[0].quota%>
+        </div>
+      </div>
+    </div>
+    <!-- Sólo para pasarlo a js -->
+    <div id="pasar" style="color:white;"><%= JSON.stringify(result[1]); %></div>
+    <div class="container"> Inscritos:
+      <ul class="list-group" id="Aceptado">
+      </ul>
+    </div>
+    <div class="container"> Solicitudes:
+      <ul class="list-group" id="Pendiente">
+      </ul>
+    </div>
+    <div class="container list-group">
+      <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalELiminar">Eliminar asesoría</button>
+    </div>
+    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" id="modalELiminar" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          ¿Estás seguro de que quieres eliminar esta asesoría?
+          <button type="button" class="btn btn-warning" id="DESTROY">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    var solicitantes = $("#pasar").html();
+    solicitantes = JSON.parse(solicitantes);
+    $("#pasar").remove();
+    var idAsesoria = $("body")[0].id;
+
+    for (i in solicitantes) { //Agregar los solicitantes
+      if (solicitantes[i].estado == "Aceptado")
+        var maq = "<li class=\"list-group-item list-group-item-action list-group-item-success\">"+ solicitantes[i].asesorado +"</li>";
+
+      else if (solicitantes[i].estado == "Pendiente") {
+        var maq = "<li class=\"list-group-item list-group-item-action list-group-item-dark\">"+ solicitantes[i].asesorado;
+              maq += "<button type=\"button\" class=\"btn btn-outline-success\">Aceptar</button>";
+              maq += "<button type=\"button\" class=\"btn btn-outline-danger\">Rechazar</button>";
+            maq += "</li>";
+      }
+      $("#" + solicitantes[i].estado).append(maq);
+    }
+
+  $("#Pendiente").on("click",(ev)=>{
+    if (ev.target.html() == "Aceptado" | "Rechazado") {
+      // console.log(ev.target.html());
+    }
+  });
+
+  $("#DESTROY").on("click",()=>{
+    // console.log(idAsesoria);
+    $.ajax({
+      url: "/"+ idAsesoria,
+      method: "delete"
+    })
+    .done(()=>{
+      window.location = "/profile";
+    })
+    .fail(()=>{
+      swal({ title: "Inténtalo más tarde", icon: "error" });
+    })
+    .always(()=>{ $("#modalELiminar").modal("hide"); });
+  });
+  </script>
+</html>

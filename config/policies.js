@@ -36,5 +36,8 @@ module.exports.policies = {
     porDar: 'sessionAuth',
     porTomar: 'sessionAuth',
     request: 'sessionAuth',
+    delete: 'myAdvisory',
+    update: 'myAdvisory',
+    getOne: 'myAdvisory',
   },
 };

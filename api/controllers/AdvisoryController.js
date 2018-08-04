@@ -37,7 +37,7 @@ module.exports = {
       return res.view("pages/home", {"ases": advs});
     })
   },
-  find: async function(req, res) {
+  find: function(req, res) {
      Advisory.find({subject : req.query.subject})
     .exec((err, ases)=>{
       if (err)
@@ -57,7 +57,7 @@ module.exports = {
       return res.json(ases);
     });
   },
-  porTomar: async function(req, res){
+  porTomar: function(req, res){
     Asesorados.find({
       asesorado: req.session.userId,
       estado: "Aceptado",
@@ -112,8 +112,29 @@ module.exports = {
       return res.ok();
     });
   },
-  destroy: function(req, attributes) {
-
+  getOne: function(req, res) {
+    result = new Array();
+    Advisory.findOne({ id : req.params.idAse})
+    .exec((err, info)=>{
+      result.push(info);
+      if (err)
+        return res.serverError();
+      Asesorados.find({
+        asesoria: req.params.idAse,
+        estado: { "!=" : "Rechazado"}
+      })
+      .exec((error, solicitantes)=>{
+        if (error)
+          return res.serverError();
+        result.push(solicitantes)
+        // console.log(result);
+        return res.view("pages/asesoria", result)
+      });
+    });
+  },
+  delete: function(req, res) {
+    Advisory.destroy({ id : req.params.idAse });
+    return res.ok();
   },
   update: function() {
 
