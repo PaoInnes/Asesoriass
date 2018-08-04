@@ -6,7 +6,13 @@
  */
 
 module.exports = {
-  create:async function(req, res) {
+  viewCreate: function(req, res) {
+    if (req.session.userId)
+      return res.view("pages/createAdv");
+    else
+      return res.redirect("/");
+  },
+  create: async function(req, res) {
     try {
       await Advisory.create({
         asesor: req.session.userId,

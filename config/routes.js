@@ -19,12 +19,9 @@ module.exports.routes = {
   '/': 'AdvisoryController.getAll',
 
   //de usuarios
-  '/login': {
-    view: 'pages/login'
-  },
-  '/logup': {
-    view: 'pages/logup'
-  },
+  '/login': 'UserController.viewLogin',
+  '/logup': 'UserController.viewLogup',
+
   'post /login': 'UserController.login',
   'post /logup': 'UserController.logup',
   '/logout': 'UserController.logout',
@@ -34,9 +31,7 @@ module.exports.routes = {
   'put /pass': 'UserController.updatePass',
 
   //De asesorías
-  '/create': {
-    view: 'pages/createAdv'
-  },
+  '/create': 'AdvisoryController.viewCreate',
   'post /create': 'AdvisoryController.create',
   'get /search': 'AdvisoryController.find',
   'post /porDar': 'AdvisoryController.porDar',

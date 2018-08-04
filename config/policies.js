@@ -18,15 +18,23 @@ module.exports.policies = {
   ***************************************************************************/
 
   '*': true,
-  
+
   UserController: {
     "*": true,
-    profile: 'sessionAuth'
+    profile: 'sessionAuth',
+    logout: 'sessionAuth',
+    logup: "noSession", //Tal vez ésto no es necesario, pero yolo
+    login: "noSession",
+    profile: 'sessionAuth',
+    updatePass: 'sessionAuth',
+    updateDesc: 'sessionAuth',
   },
 
   AdvisoryController: {
     "*": true,
     create: 'sessionAuth',
     porDar: 'sessionAuth',
-  }
+    porTomar: 'sessionAuth',
+    request: 'sessionAuth',
+  },
 };

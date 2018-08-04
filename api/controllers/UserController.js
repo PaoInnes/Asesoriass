@@ -27,6 +27,18 @@ module.exports = {
         return res.send("error");
       }
   },
+  viewLogin: function(req, res) {
+    if (!req.session.userId)
+      return res.view("pages/login");
+    else
+      return res.redirect("/");
+  },
+  viewLogup: function(req, res) {
+    if (!req.session.userId)
+      return res.view("pages/logup");
+    else
+      return res.redirect("/");
+  },
   login: async function (req, res) {
     if (req.body.accountNumberIn) {
       let user = await User.findOne({id: req.body.accountNumberIn});
@@ -54,6 +66,7 @@ module.exports = {
   },
   logout: function(req, res) {
     delete req.session.userId;
+    delete req.session.userPass;
     return res.redirect("/");
   },
   profile: function(req, res) {
