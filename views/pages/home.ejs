@@ -15,7 +15,6 @@
               </div>
               <p class="mb-1"><%= adv.description %></p>
               <small><%= adv.days %></small>
-              <% console.log( adv.id) %>
               <button id="<%= adv.id%>" class="btn btn-outline my-sm-0 verAse" style="padding: 0;">Ver asesoría</button>
             </a>
           </div>
@@ -30,10 +29,10 @@
   <script type="text/javascript">
     var idAsesoriaActual;
     $(".verAse").on("click",(ev)=>{
-      idAsesoriaActual = $(ev.target).parents()[1].id;
+      idAsesoriaActual = $(ev.target).attr("id");
 
       let espera = new Promise ((resolve, reject)=>{
-        console.log(idAsesoriaActual);
+        // console.log(idAsesoriaActual);
         $.ajax({
           url: "/see",
           method: "get",
@@ -50,6 +49,7 @@
         // console.log(asesoria);
         // console.log(asesoria[1].canRequest);
         $("#editarAse").remove();
+        $("#estadoSoli").remove();
         if ( asesoria[1].canRequest == "false") //Checar si se puede inscribir
           $("#soliAse").hide();
         else
@@ -62,7 +62,7 @@
 
           if ( asesoria[2].hasOwnProperty("estado")){
             $("#soliAse").hide();
-            $("#bodyModalAse").append("<div class=\"card card-body\">Solicitud de asesoría: " + asesoria[2].estado +"</div>"); //Esto podría ser un ícono bello
+            $("#bodyModalAse").append("<div class=\"card card-body\" id=\"estadoSoli\">Solicitud de asesoría: " + asesoria[2].estado +"</div>"); //Esto podría ser un ícono bello
           }
 
         }

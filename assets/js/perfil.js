@@ -17,11 +17,12 @@
           maq += "</div>"
           $("#"+ ele).append(maq);
         }
-      })
+      });
     }
 
     getAdvs("porDar");
     getAdvs("porTomar");
+    
     //Editar info
     $("#desc").on("click",()=>{
       let newDesc = $("#newDesc").html();

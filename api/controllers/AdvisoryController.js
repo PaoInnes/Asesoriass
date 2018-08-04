@@ -51,22 +51,24 @@ module.exports = {
       return res.json(ases);
     });
   },
-  // porTomar: function(req, res){
-  //   Asesorados.find({
-  //     asesorado: req.session.userId,
-  //     estado: "Pendiente",
-  //   })
-  //   .populate("asesoria")
-  //   .exec((err, ases)=>{
-  //     console.log("ases...."+ ases);
-  //     console.log("asesoria...." + asesoria);
-  //     console.log("cosa..."+ ases.asesoria);
-  //     if (err) {
-  //       return res.serverError();
-  //     }
-  //     return res.json(ases);
-  //   });
-  // },
+  porTomar: async function(req, res){
+    Asesorados.find({
+      asesorado: req.session.userId,
+      estado: "Aceptado",
+    })
+    .populate("asesoria")
+    .exec((err, ases)=>{
+      var asesorias = new Array();
+      for (var i in ases)
+        asesorias.push(ases[i].asesoria);
+
+      if (err)
+        return res.serverError();
+
+      return res.json(asesorias);
+
+    });
+  },
   see: async function(req, res) {
     try {
       // console.log( typeof req.query.idAdv);
@@ -90,7 +92,7 @@ module.exports = {
       else
         return res.json("["+ JSON.stringify(ase) +",{\"canRequest\":\"false\"}]");
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       return res.serverError();
     }
   },
