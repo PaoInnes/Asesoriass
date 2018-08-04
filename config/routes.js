@@ -39,6 +39,7 @@ module.exports.routes = {
   'post /request': 'AdvisoryController.request',
   'get /see': 'AdvisoryController.see',
   'delete /:idAse': 'AdvisoryController.destroy',
-  '/inspeccionarAsesoria/:idAse': 'AdvisoryController.getOne'
-
+  '/inspeccionarAsesoria/:idAse': 'AdvisoryController.getOne',
+  'put /replyRequest': 'AdvisoryController.replyRequest',
+  'put /aumCupo' : 'AdvisoryController.aumCupo',
 };

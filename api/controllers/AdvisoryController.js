@@ -116,6 +116,9 @@ module.exports = {
     result = new Array();
     Advisory.findOne({ id : req.params.idAse})
     .exec((err, info)=>{
+      req.session.inscritos = info.inscritos
+      req.session.cupo = info.quota
+      console.log(req.session.inscritos, req.session.cupo);
       result.push(info);
       if (err)
         return res.serverError();
@@ -136,7 +139,42 @@ module.exports = {
 		await Advisory.destroy({id:req.params.idAse});
 		return res.json("Eliminado");
   },
-  update: function() {
+  replyRequest: async function(req, res) {
+    console.log(req.body);
+    if ( (req.session.inscritos < req.session.cupo && req.body.estado == "Aceptado") || req.body.estado == "Rechazado" ){
+      try {
+        if ( req.body.estado == "Aceptado")
+        await Advisory.update(
+          {id : req.body.idAse},
+          {inscritos : req.body.inscritos}
+        );
 
+        await Asesorados.update(
+          {id : req.body.idReq},
+          {estado : req.body.estado}
+        );
+
+        return res.ok();
+      } catch (e) {
+        // console.log(e);
+        return res.serverError();
+      }
+    }
+    else
+      return res.redirect("/inspeccionarAsesoria/" + req.body.idAse);
   },
+  // aumCupo: function(req, res) {
+  //   if (req.body.quota <= 20){
+  //     Advisory.update(
+  //       {id : req.body.idAse},
+  //       {quota : req.body.quota}
+  //     ).exec((err)=>{
+  //       if (err)
+  //         return res.serverError();
+  //       return res.ok()
+  //     })
+  //   }
+  //   else
+  //     return res.redirect("/inspeccionarAsesoria/" + req.body.idAse);
+  // }
 };

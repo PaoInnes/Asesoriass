@@ -20,24 +20,23 @@ module.exports.policies = {
   '*': true,
 
   UserController: {
-    "*": true,
     profile: 'sessionAuth',
     logout: 'sessionAuth',
-    logup: "noSession", //Tal vez ésto no es necesario, pero yolo
-    login: "noSession",
     profile: 'sessionAuth',
     updatePass: 'sessionAuth',
     updateDesc: 'sessionAuth',
   },
 
   AdvisoryController: {
-    "*": true,
     create: 'sessionAuth',
     porDar: 'sessionAuth',
     porTomar: 'sessionAuth',
     request: 'sessionAuth',
-    delete: 'myAdvisory',
-    update: 'myAdvisory',
-    getOne: 'myAdvisory',
+    destroy: ['sessionAuth', 'myAdvisory'],
+    update: ['sessionAuth', 'myAdvisory'],
+    getOne: ['sessionAuth', 'myAdvisory'],
+    replyRequest: ['sessionAuth', 'myAdvisory'],
+    aumCupo: ['sessionAuth', 'myAdvisory'],
   },
+
 };

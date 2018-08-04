@@ -33,18 +33,18 @@
       </div>
       <div class="card">
         <div class="card-body"> Cupo:
-          <%= result[0].quota%>
+          <div id="cupo"><%= result[0].inscritos %>/<%= result[0].quota %></div>
         </div>
       </div>
     </div>
     <!-- Sólo para pasarlo a js -->
     <div id="pasar" style="color:white;"><%= JSON.stringify(result[1]); %></div>
     <div class="container"> Inscritos:
-      <ul class="list-group" id="Aceptado">
+      <ul class="list-group" id="contenedorAceptado">
       </ul>
     </div>
     <div class="container"> Solicitudes:
-      <ul class="list-group" id="Pendiente">
+      <ul class="list-group" id="contenedorPendiente">
       </ul>
     </div>
     <div class="container list-group">
@@ -54,49 +54,10 @@
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
           ¿Estás seguro de que quieres eliminar esta asesoría?
-          <button type="button" class="btn btn-warning" id="DESTROY">Eliminar</button>
+          <button type="button" class="btn btn-danger" id="DESTROY">Eliminar</button>
         </div>
       </div>
     </div>
   </body>
-  <script type="text/javascript">
-    var solicitantes = $("#pasar").html();
-    solicitantes = JSON.parse(solicitantes);
-    $("#pasar").remove();
-    var idAsesoria = $("body")[0].id;
-
-    for (i in solicitantes) { //Agregar los solicitantes
-      if (solicitantes[i].estado == "Aceptado")
-        var maq = "<li class=\"list-group-item list-group-item-action list-group-item-success\">"+ solicitantes[i].asesorado +"</li>";
-
-      else if (solicitantes[i].estado == "Pendiente") {
-        var maq = "<li class=\"list-group-item list-group-item-action list-group-item-dark\">"+ solicitantes[i].asesorado;
-              maq += "<button type=\"button\" class=\"btn btn-outline-success\">Aceptar</button>";
-              maq += "<button type=\"button\" class=\"btn btn-outline-danger\">Rechazar</button>";
-            maq += "</li>";
-      }
-      $("#" + solicitantes[i].estado).append(maq);
-    }
-
-  $("#Pendiente").on("click",(ev)=>{
-    if (ev.target.html() == "Aceptado" | "Rechazado") {
-      // console.log(ev.target.html());
-    }
-  });
-
-  $("#DESTROY").on("click",()=>{
-    // console.log(idAsesoria);
-    $.ajax({
-      url: "/"+ idAsesoria,
-      method: "delete"
-    })
-    .done(()=>{
-      window.location = "/profile";
-    })
-    .fail(()=>{
-      swal({ title: "Inténtalo más tarde", icon: "error" });
-    })
-    .always(()=>{ $("#modalELiminar").modal("hide"); });
-  });
-  </script>
+  <script type="text/javascript" src="/js/insAse.js">  </script>
 </html>
