@@ -51,23 +51,27 @@ module.exports = {
       return res.json(ases);
     });
   },
-  porTomar: function(req, res){
-    Asesorados.find({
-      asesorado: req.session.userId,
-      estado: "Aceptado",
-    })
-    .exec((err, ases)=>{
-      // console.log(ases);
-      if (err) {
-        return res.serverError();
-      }
-      return res.json(ases);
-    });
-  }
+  // porTomar: function(req, res){
+  //   Asesorados.find({
+  //     asesorado: req.session.userId,
+  //     estado: "Pendiente",
+  //   })
+  //   .populate("asesoria")
+  //   .exec((err, ases)=>{
+  //     console.log("ases...."+ ases);
+  //     console.log("asesoria...." + asesoria);
+  //     console.log("cosa..."+ ases.asesoria);
+  //     if (err) {
+  //       return res.serverError();
+  //     }
+  //     return res.json(ases);
+  //   });
+  // },
   see: async function(req, res) {
     try {
-      var ase = await Advisory.findOne({id : req.query.idAdv});
-      // console.log(ase);
+      // console.log( typeof req.query.idAdv);
+      var ase = await Advisory.findOne({id: req.query.idAdv });
+      // console.log( ase);
       if (req.session.userId) { //Si está registrado
         if(ase.asesor == req.session.userId) //Si es su asesoría
           return res.json(("[" + JSON.stringify(ase) + ", {\"canRequest\":\"false\"},{\"IsProf\" : \"true\"}]"));
@@ -86,6 +90,7 @@ module.exports = {
       else
         return res.json("["+ JSON.stringify(ase) +",{\"canRequest\":\"false\"}]");
     } catch (e) {
+      console.log(e);
       return res.serverError();
     }
   },

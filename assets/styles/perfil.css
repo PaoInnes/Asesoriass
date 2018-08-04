@@ -1,18 +1,45 @@
-  #info{
-    margin: 5% 10%;
-    background-color: #bcb8b1;
-    padding: 10px;
-    border-radius: 10px;
-  }
-  #info div{
-    padding: 10px;
-    text-align: center;
-  }
-  .camb{
-    margin: 0 42.5% !important;
-    background-color: #e0afa0 !important;
-    border-color: white !important;
-  }
-  #desc{
-    margin: 2% 42% !important;
-  }
+#info{
+  margin: 1% 10%;
+  background-color: #bcb8b1;
+  padding: 10px;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5em;
+  color: #463f3a;
+}
+#info div{
+  padding: 20px;
+  text-align: left;
+}
+#me{
+  text-align: center;
+  font-size: 4em;
+  font-family: 'Patua One', cursive;
+  padding: 0% !important;
+  color: #463f3a;
+}
+.camb{
+  margin-top: 2% !important;
+  background-color: #e0afa0 !important;
+  border-color: white !important;
+  transition: transform .2s;
+}
+.camb:hover{
+  background-color: white !important;
+  color: #e0afa0 !important;
+  transform: scale(1.05);
+}
+#dv_desc{
+  text-align: right !important;
+  margin-top: 0% !important;
+  padding: 0% !important;
+}
+#desc{margin: 0% !important;}
+#dv_user{
+  margin: 20px;
+  text-align: center;
+}
+.elemPerfil{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+}

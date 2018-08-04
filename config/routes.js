@@ -40,7 +40,7 @@ module.exports.routes = {
   'post /create': 'AdvisoryController.create',
   'get /search': 'AdvisoryController.find',
   'post /porDar': 'AdvisoryController.porDar',
-  'post /porTomar': 'AdvisoryController.porDar',
+  'post /porTomar': 'AdvisoryController.porTomar',
   'post /request': 'AdvisoryController.request',
   'get /see': 'AdvisoryController.see',
 

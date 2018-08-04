@@ -1,0 +1,29 @@
+body{background:#e0afa0;}
+.modal-content{
+  color:#463f3a;
+}
+#modalll{
+  text-align: center;
+  font-size: 4em;
+  font-family: 'Patua One', cursive;
+}
+.modal-body{
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5em;
+  margin: 5%;
+}
+#login, #Registrarse{
+  background: #463f3a;
+  color: #f4f3ee;
+  font-size: 1em;
+  border-color: #e0afa0;
+  transition: transform .2s;
+}
+#login:hover, #Registrarse:hover{
+  background-color: #463f3a;
+  color: #e0afa0;
+  transform: scale(1.08);
+}
+#icon_login{
+  margin: 2%;
+}

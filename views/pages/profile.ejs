@@ -3,29 +3,40 @@
   <head>
     <meta charset="utf-8"/>
     <title></title>
-    <link rel="stylesheet" href="../../assets/styles/perfil.css">
+    <link rel="stylesheet" href="/styles/perfil.css">
   </head>
   <body>
-    <div id="info">
-      <div><%= user.id %> </div>
-      <div ><%= user.name %> </div>
-      <div contenteditable="true"><%= user.description %> </div>
-      <button id="desc" class="btn btn-primary camb">Actualizar descripción</button>
-      <button class="btn btn-primary camb" data-toggle="modal" data-target="#modalPass">Cambiar contraseña</button>
-    </div>
-    <div class="container elemPerfil" id="solis">
-    </div>
-    <div class="container elemPerfil" id="porTomar">
-      <div class="modal-header">
-        <h5 class="modal-title">Asesorías en las que estás inscrito:</h5>
+    <body style="background: #f4f3ee;">
+      <div id="dv_user"><i id="icon_user" class="fa fa-user-circle" style="font-size:80px;color:#463f3a"></i></div>
+      <div id="me">Yo</div>
+      <div id="info">
+        <div id="dv_desc"><button id="desc" class="btn btn-primary camb">Actualizar descripción</button></div>
+        <div><i class="fa fa-hashtag" style="font-size:32px;color:#f4f3ee"></i><%= user.id %></div>
+        <div><i class="fa fa-user" style="font-size:32px;color:#f4f3ee"></i> <%= user.name %></div>
+        <!-- <div> -->
+        <i class="fa fa-angellist" style="font-size:32px;color:#f4f3ee"></i>
+          <div contenteditable="true"id="newDesc">
+              <%= user.description %>
+          </div>
+        <!-- </div> -->
+        <button class="btn btn-primary camb" data-toggle="modal" data-target="#modalPass">Cambiar contraseña</button>
       </div>
-    </div>
-    <div class="container elemPerfil" id="porDar">
-      <div class="modal-header">
-        <h5 class="modal-title">Asesorías creadas:</h5>
-      </div>
-    </div>
+      <div>
+      <div class="container elemPerfil" id="solis"></div>
+      <div>
+        <div class="container elemPerfil" id="porTomar">
+          <div class="modal-header">
+            <h5 class="modal-title">Asesorías en las que estás inscrito:</h5>
 
+          </div>
+        </div>
+        <div class="container elemPerfil" id="porDar">
+          <div class="modal-header">
+            <h5 class="modal-title">Asesorías creadas:</h5>
+
+          </div>
+        </div>
+      </div>
     <!-- Modal para cambiar contraseña -->
     <div class="modal fade" id="modalPass" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -53,11 +64,11 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary" id="change">Cambiar</button>
+            <button type="button" class="btn btn-primary camb" id="change">Cambiar</button>
           </div>
         </div>
       </div>
     </div>
   </body>
-  <script type="text/javascript" src="../../assets/profile.js"></script>
+  <script type="text/javascript" src="/js/perfil.js"></script>
 </html>
