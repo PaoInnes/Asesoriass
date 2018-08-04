@@ -17,7 +17,7 @@ module.exports = {
     },
     quota: {
       type: "number",
-      min: 0, //Aquí podría ocasionar un error en el futuro
+      min: 1,
       max: 20,
       required: true,
     },
@@ -43,6 +43,10 @@ module.exports = {
     subject: {
       type: "string",
       maxLength: 20,
+    },
+    inscritos: {
+      type: "number",
+      defaultsTo: 0,
     },
   },
 

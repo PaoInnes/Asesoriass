@@ -13,7 +13,6 @@ $.ajax({ //Checar si ya Inició sesión, para armar nav dependiendo si sí ingre
       LoggedIn += "<li class=\"nav-item\">";
         LoggedIn += "<a class=\"nav-link\" href=\"/logup\">Registrarse</a>";
       LoggedIn += "</li>";
-    LoggedIn += "</ul>";
   }
   else {
       LoggedIn ="<li class=\"nav-item dropdown\">";
@@ -26,15 +25,14 @@ $.ajax({ //Checar si ya Inició sesión, para armar nav dependiendo si sí ingre
         LoggedIn +="</div>";
       LoggedIn +="</li>";
       LoggedIn += "<li class=\"nav-item\">";
-        LoggedIn += "<a class=\"dropdown-item\" href=\"/create\">Crear asesoría</a>";
+        LoggedIn += "<a class=\"nav-link\" href=\"/create\">Crear asesoría</a>";
       LoggedIn += "</li>";
-      LoggedIn +="<li class=\"nav-item dropdown\">";
-        LoggedIn += "<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"notif\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">";
-          LoggedIn +="Notif";
-        LoggedIn +="</a>";
-        LoggedIn +="<div class=\"dropdown-menu\" aria-labelledby=\"notif\"></div>";
-      LoggedIn +="</li>";
-    LoggedIn +="</ul>";
+      // LoggedIn +="<li class=\"nav-item dropdown\">";
+      //   LoggedIn += "<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"notif\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">";
+      //     LoggedIn +="Notif";
+      //   LoggedIn +="</a>";
+      //   LoggedIn +="<div class=\"dropdown-menu\" aria-labelledby=\"notif\"></div>";
+      // LoggedIn +="</li>";
   }
   $("#cambio").append(LoggedIn);
 });

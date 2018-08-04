@@ -21,7 +21,7 @@ var idAsesoriaActual;
       // console.log(asesoria[1].canRequest);
       $("#editarAse").remove();
       $("#estadoSoli").remove();
-      if ( asesoria[1].canRequest == "false") //Checar si se puede inscribir
+      if ( asesoria[1].canRequest == "false" || asesoria[0].inscritos == asesoria[0].quota) //Checar si se puede inscribir y aún hay cupo
         $("#soliAse").hide();
       else
         $("#soliAse").show();
@@ -42,7 +42,7 @@ var idAsesoriaActual;
       $("#asesor").html("Asesor: " + asesoria[0].asesor); //Ya sé que da asco, pero lo intenté de mil formas y fracasé
       $("#subject").html("Asesoría sobre: " + asesoria[0].subject);
       $("#days").html("Días en los que se imparte: " + asesoria[0].days);
-      $("#quota").html("Cupo: " + asesoria[0].quota);
+      $("#quota").html("Cupo: "+ asesoria[0].inscritos + "/" +asesoria[0].quota);
       $("#horario").html("Horario:" + asesoria[0].starts +"-"+ asesoria[0].ends);
       $("#classroom").html("Salón: " + asesoria[0].classroom);
       var descripcion = (asesoria[0].description != "")? asesoria[0].description : "Esta asesoria no tiene descripción"

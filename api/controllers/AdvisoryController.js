@@ -132,9 +132,9 @@ module.exports = {
       });
     });
   },
-  delete: function(req, res) {
-    Advisory.destroy({ id : req.params.idAse });
-    return res.ok();
+  destroy: async function(req, res){
+		await Advisory.destroy({id:req.params.idAse});
+		return res.json("Eliminado");
   },
   update: function() {
 

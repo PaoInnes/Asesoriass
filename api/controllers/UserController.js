@@ -105,6 +105,7 @@ module.exports = {
           return res.send("bep");
       });
     } catch (error) {
+      console.log(error);
       return res.serverError();
     };
   },

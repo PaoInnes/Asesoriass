@@ -38,7 +38,7 @@ module.exports.routes = {
   'post /porTomar': 'AdvisoryController.porTomar',
   'post /request': 'AdvisoryController.request',
   'get /see': 'AdvisoryController.see',
-  'delete /:idAse': 'AdvisoryController.delete',
+  'delete /:idAse': 'AdvisoryController.destroy',
   '/inspeccionarAsesoria/:idAse': 'AdvisoryController.getOne'
 
 };
