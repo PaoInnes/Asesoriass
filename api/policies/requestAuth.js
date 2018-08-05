@@ -4,6 +4,7 @@ module.exports = function(req, res, next) {
     or : [{asesorado: req.session.userId},
           {asesor: req.session.userId}]
   })
+  .populate("asesoria")
   .exec((err, result)=>{
     if (err)
       return res.serverError();

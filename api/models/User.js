@@ -8,21 +8,21 @@ const bcrypt = require('bcrypt');
 module.exports = {
 
   attributes: {
-    id: {
+    id: { // Número de cuenta
       type: "string",
       required: true,
       regex: /^(31)[0-9]{7}/,
     },
-    name: {
+    name: { // NOmbre del usuario
       type: "string",
       required: true,
       maxLength: 30,
     },
-    password:{
+    password:{ // Contraseña
       type: "string",
       required: true,
     },
-    description:{
+    description:{ //Descripción
        type: "string",
        maxLength: 200,
     },
