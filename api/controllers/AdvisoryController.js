@@ -118,7 +118,7 @@ module.exports = {
     .exec((err, info)=>{
       req.session.inscritos = info.inscritos
       req.session.cupo = info.quota
-      console.log(req.session.inscritos, req.session.cupo);
+      // console.log(req.session.inscritos, req.session.cupo);
       result.push(info);
       if (err)
         return res.serverError();
@@ -136,11 +136,12 @@ module.exports = {
     });
   },
   destroy: async function(req, res){
-		await Advisory.destroy({id:req.params.idAse});
+		await Advisory.destroy({ id: req.params.idAse});
+    await Asesorados.destroy({ asesoria: req.params.idAse});
 		return res.json("Eliminado");
   },
   replyRequest: async function(req, res) {
-    console.log(req.body);
+    // console.log(req.body);
     if ( (req.session.inscritos < req.session.cupo && req.body.estado == "Aceptado") || req.body.estado == "Rechazado" ){
       try {
         if ( req.body.estado == "Aceptado")
@@ -173,7 +174,7 @@ module.exports = {
       if (error)
         return res.serverError();
 
-      console.log(result);
+      // console.log(result);
       return res.json(result);
     })
   },

@@ -47,10 +47,10 @@
       method: 'get',
     })
     .done((response)=>{
-      console.log(response);
+      // console.log(response);
       for (var ase of response)
         if ( ase ){
-          console.log(ase);
+          // console.log(ase);
           let clase = (ase.estado == "Rechazado")? "list-group-item-danger" : "list-group-item-light"
           let maq = "<a class=\"list-group-item " + clase + " flex-column align-items-start\">"
                 maq += "<div class=\"d-flex w-100 justify-content-between\">"

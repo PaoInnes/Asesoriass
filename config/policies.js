@@ -36,7 +36,7 @@ module.exports.policies = {
     update: ['sessionAuth', 'myAdvisory'],
     getOne: ['sessionAuth', 'myAdvisory'],
     replyRequest: ['sessionAuth', 'myAdvisory'],
-    // aumCupo: ['sessionAuth', 'myAdvisory'],
+    request: ['sessionAuth', 'requestAuth']
   },
 
 };
