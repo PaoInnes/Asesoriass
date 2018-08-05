@@ -1,7 +1,7 @@
 # asesorias
 
 a [Sails v1](https://sailsjs.com) application
-
+Esta plataforma se creo para 
 
 ### Links
 
@@ -15,7 +15,7 @@ a [Sails v1](https://sailsjs.com) application
 
 ### Version info
 
-Es necesario que exista una base llamada "asesorias", es suficiente con entrar a localhost:1337, abre home y después podrás iniciar sesión o registarte (estas opciones se encuentran en nav);
+
 
 <!-- Internally, Sails used [`sails-generate@1.15.28`](https://github.com/balderdashy/sails-generate/tree/v1.15.28/lib/core-generators/new). -->
 

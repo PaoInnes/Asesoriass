@@ -3,6 +3,23 @@
   <head>
     <meta charset="utf-8">
   </head>
+  <style media="screen">
+    .modal-body{
+      background-color: #bcb8b1;
+      text-align: center;
+      font-size: 1.2em;
+      font-family: 'Poppins', sans-serif;
+      color: #463f3a;
+    }
+    .modal-body div{ margin-bottom: 2em !important; }
+    .modal-header, .modal-footer{
+      background-color: #463f3a !important;
+      text-align: center !important;
+      font-size: 5em !important;
+      font-family: 'Patua One', cursive;
+      color: #f4f3ee;
+    }
+  </style>
   <body>
     <!--Modal de asesorías (las odio pq son lasrgas pero hermosas) -->
     <div class="modal fade"  tabindex="-1" id="modalAse" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -23,8 +40,8 @@
             <div class="card card-body" id="description"></div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary" id="soliAse">Solicitar asesoría</button>
+            <button type="button" class="btn btn-secondary camb" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary camb" id="soliAse">Solicitar asesoría</button>
           </div>
         </div>
       </div>

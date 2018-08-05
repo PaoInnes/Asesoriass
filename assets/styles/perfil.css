@@ -18,17 +18,6 @@
   padding: 0% !important;
   color: #463f3a;
 }
-.camb{
-  margin-top: 2% !important;
-  background-color: #e0afa0 !important;
-  border-color: white !important;
-  transition: transform .2s;
-}
-.camb:hover{
-  background-color: white !important;
-  color: #e0afa0 !important;
-  transform: scale(1.05);
-}
 #dv_desc{
   text-align: right !important;
   margin-top: 0% !important;

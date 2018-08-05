@@ -4,11 +4,23 @@
     <meta charset="utf-8">
     <title></title>
   </head>
+  <style>
+  #contform{
+    background-color: #bcb8b1;
+    padding: 2em;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    color: #463f3a;
+    margin: 5vw;
+    border-radius: 10px;
+  }
+  </style>
   <body>
-    <div class="container" style="margin-top: 5%;border-radius:10px;">
+    <div class="container" id="contform">
       <div class="form-group">
         <label for="subject">Selecciona la materia</label>
-        <select type="" class="form-control form-control" id="materia">
+        <select type="" class="form-control" id="materia">
           <% var subjects = ["Historia Universal", "Lengua Española", "Matematicas IV", "Lógica", "Historia de México",
           "Literatura Universal", "Matematicas V", "Ética", "Química", "Informática", "Biología", "Física"]; %>
           <%for (var sub of subjects) { %>
@@ -20,35 +32,35 @@
         <label for="days">Selecciona los días</label><br />
         <% var days = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]; %>
         <%for (var day of days) { %>
-            <input type="checkbox" class="form-group col-md-1" id="<%= day%>" value="<%= day%>"><%= day%>
+            <input type="checkbox" class="form-group" id="<%= day%>" value="<%= day%>"><%= day%>
         <% } %>
       </div>
-      <div class="form-row">
-        <div class="form-group col-md-4">
+      <div class="form-row" >
+        <div class="form-group" style="margin-right:1em !important">
           <label for="quota">Selecciona el cupo</label>
           <input class="form-control" type="number" min=1 max=20 id="cupo"/>
           <small class="form-text text-muted">Máximo 20 alumnos</small>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-4" style="margin-right:1em !important">
           Empieza: <input class="form-control" type="time" min="7:00" max="20:00" name="starts" id="empieza"/>
           Termina: <input class="form-control" type="time" min="8:00" max="21:00" name="ends" id="termina"/>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group" style="margin-right:1em !important">
           <label for="classroom">Salón</label>
           <select class="form-control" id="salon">
             <% var classrooms = ["B-7", "A-106", "C-8", "A-102", "D-6","C-4", "C-106"]; %>
             <%for (var room of classrooms) { %>
               <option value="<%= room%>"><%= room%></option>
-              <% } %>
+            <% } %>
           </select>
         </div>
       </div>
       <div class="form-group">
-        <label for="days">EscrIbe sobre qué temas podrías ayudar</label>
+        <label for="days">Escribe sobre qué temas podrías ayudar</label>
         <input type="textarea" id="descripcion" class="form-control" row=6 placeholder="Sé temas como la guerra de los pastelas, la ilustración..." aria-describedby="help"/>
         <small id="Help" class="form-text text-muted">Máximo 100 caracteres.</small>
       </div>
-      <button class="btn btn-primary" id="create">Crear</button>
+      <button class="btn btn-primary camb" id="create">Crear</button>
     </div>
   </body>
   <script src="/js/create.js">  </script>

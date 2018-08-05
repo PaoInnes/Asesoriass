@@ -33,7 +33,7 @@ var idAsesoriaActual;
       if( typeof asesoria[2] != "undefined" ){
 
         if ( asesoria[2].hasOwnProperty("IsProf"))
-          $("#bodyModalAse").append("<button id=\"editarAse\" class=\"btn btn-outline my-sm-0 \"><a href=\"inspeccionarAsesoria/"+ idAsesoriaActual +"\">Inspeccionar</a></button>");
+          $("#bodyModalAse").append("<button id=\"editarAse\" class=\"btn btn-outline my-sm-0 camb\" href=\"inspeccionarAsesoria/"+ idAsesoriaActual +"\">Inspeccionar</button>");
 
         if ( asesoria[2].hasOwnProperty("estado")){
           $("#soliAse").hide();
@@ -43,14 +43,14 @@ var idAsesoriaActual;
       }
 
       //Appendear a la modal el contenido de la asesoría
-      $("#asesor").html("Asesor: " + asesoria[0].asesor); //Ya sé que da asco, pero lo intenté de mil formas y fracasé
-      $("#subject").html("Asesoría sobre: " + asesoria[0].subject);
-      $("#days").html("Días en los que se imparte: " + asesoria[0].days);
-      $("#quota").html("Cupo: "+ asesoria[0].inscritos + "/" +asesoria[0].quota);
-      $("#horario").html("Horario:" + asesoria[0].starts +"-"+ asesoria[0].ends);
-      $("#classroom").html("Salón: " + asesoria[0].classroom);
+      $("#asesor").html("Asesor: <b>" + asesoria[0].asesor + "</b>"); //Ya sé que da asco, pero lo intenté de mil formas y fracasé
+      $("#subject").html("Asesoría sobre: <b>" + asesoria[0].subject + "</b>");
+      $("#days").html("Días en los que se imparte: <b>" + asesoria[0].days + "</b>");
+      $("#quota").html("Cupo: <b>"+ asesoria[0].inscritos + "/" +asesoria[0].quota + "</b>");
+      $("#horario").html("Horario: <b>" + asesoria[0].starts +"-"+ asesoria[0].ends + "</b>");
+      $("#classroom").html("Salón: <b>" + asesoria[0].classroom + "</b>");
       var descripcion = (asesoria[0].description != "")? asesoria[0].description : "Esta asesoria no tiene descripción"
-      $("#description").html("Descripción: " + descripcion);
+      $("#description").html("Descripción: <b>" + descripcion + "</b>");
 
       $("#modalAse").modal("show"); //Mostrar la modal con todo
     }).catch((err)=>{

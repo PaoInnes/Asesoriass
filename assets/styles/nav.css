@@ -5,12 +5,14 @@
   Blanco: #f4f3ee
   Rosa: #e0afa0
 */
-.navbar{
+.camb{
+  margin-top: 2% !important;
   background-color: #e0afa0 !important;
+  border-color: white !important;
+  transition: transform .2s;
 }
-#navbarTogglerDemo02{
-  font-size: 1em !important;
-}
-body{
-  background-color: #f3f4ee;
+.camb:hover{
+  background-color: white !important;
+  color: #e0afa0 !important;
+  transform: scale(1.05);
 }
