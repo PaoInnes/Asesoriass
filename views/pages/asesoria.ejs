@@ -3,6 +3,21 @@
   <head>
     <title></title>
   </head>
+  <style>
+    #detalles, .ayuda{
+      font-family: 'Poppins', sans-serif;
+      font-size: 1em;
+      margin-top: 4em;
+      background-color:#bcb8b1;
+    }
+    #detalles div{
+      padding: 1em;
+      margin-top: 2% !important;
+    }
+    #detalles div div{
+      padding: 0 !important;
+    }
+  </style>
   <body id="<%= result[0].id%>">
     <div class="container" id="detalles">
       Detalles de tu asesoría:
@@ -11,39 +26,39 @@
           <%= result[0].subject%>
         </div>
       </div>
-      <div class="card">
-        <div class="card-body"> Descripción de la asesoría
+      <div class="card"> Descripción de la asesoría
+        <div class="card-body">
           <%= result[0].description%>
         </div>
       </div>
-      <div class="card">
-        <div class="card-body"> Días en los que se imparte
+      <div class="card"> Días en los que se imparte
+        <div class="card-body">
           <%= result[0].days%>
         </div>
       </div>
-      <div class="card">
-        <div class="card-body"> Horario:
-          <%= result[0].starts%> - <%result[0].ends%>
+      <div class="card">Horario:
+        <div class="card-body">
+          <%= result[0].starts%> - <%=result[0].ends%>
         </div>
       </div>
-      <div class="card">
-        <div class="card-body"> Salón
+      <div class="card"> Salón
+        <div class="card-body">
           <%= result[0].classroom%>
         </div>
       </div>
-      <div class="card">
-        <div class="card-body"> Cupo:
-          <div id="cupo"><%= result[0].inscritos %>/<%= result[0].quota %></div>
+      <div class="card">Cupo:
+        <div class="card-body" id="cupo">
+          <%= result[0].inscritos %>/<%= result[0].quota %>
         </div>
       </div>
     </div>
     <!-- Sólo para pasarlo a js -->
     <div id="pasar" style="color:white;"><%= JSON.stringify(result[1]); %></div>
-    <div class="container"> Inscritos:
+    <div class="container ayuda"> Inscritos:
       <ul class="list-group" id="contenedorAceptado">
       </ul>
     </div>
-    <div class="container"> Solicitudes:
+    <div class="container ayuda" > Solicitudes:
       <ul class="list-group" id="contenedorPendiente">
       </ul>
     </div>
@@ -52,7 +67,7 @@
     </div>
     <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" id="modalELiminar" aria-hidden="true">
       <div class="modal-dialog modal-sm">
-        <div class="modal-content">
+        <div class="modal-content bodyAse">
           ¿Estás seguro de que quieres eliminar esta asesoría?
           <button type="button" class="btn btn-danger" id="DESTROY">Eliminar</button>
         </div>

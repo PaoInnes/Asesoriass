@@ -107,8 +107,10 @@ module.exports = {
       asesoria: req.body.idAdv,
       asesorado: req.session.userId
     }).exec((err)=>{
-      if (err)
+      if (err){
+        console.log(err);
         return res.serverError();
+      }
       return res.ok();
     });
   },

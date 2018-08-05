@@ -33,7 +33,7 @@ var idAsesoriaActual;
       if( typeof asesoria[2] != "undefined" ){
 
         if ( asesoria[2].hasOwnProperty("IsProf"))
-          $("#bodyModalAse").append("<button id=\"editarAse\" class=\"btn btn-outline my-sm-0 camb\" href=\"inspeccionarAsesoria/"+ idAsesoriaActual +"\">Inspeccionar</button>");
+          $("#bodyModalAse").append("<button id=\"editarAse\" class=\"btn btn-outline my-sm-0 camb\"><a href=\"inspeccionarAsesoria/"+ idAsesoriaActual +"\">Inspeccionar</a></button>");
 
         if ( asesoria[2].hasOwnProperty("estado")){
           $("#soliAse").hide();
