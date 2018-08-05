@@ -44,7 +44,7 @@ var idAsesoriaActual;
 
       //Appendear a la modal el contenido de la asesoría
       $("#asesor").html("Asesor: <b>" + asesoria[0].asesor + "</b>"); //Ya sé que da asco, pero lo intenté de mil formas y fracasé
-      $("#subject").html("Asesoría sobre: <b>" + asesoria[0].subject + "</b>");
+      $("#subject").html("Asesoría sobre: " + asesoria[0].subject );
       $("#days").html("Días en los que se imparte: <b>" + asesoria[0].days + "</b>");
       $("#quota").html("Cupo: <b>"+ asesoria[0].inscritos + "/" +asesoria[0].quota + "</b>");
       $("#horario").html("Horario: <b>" + asesoria[0].starts +"-"+ asesoria[0].ends + "</b>");

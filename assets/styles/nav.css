@@ -6,6 +6,7 @@
   Rosa: #e0afa0
 */
 .camb{
+  color: white;
   margin-top: 2% !important;
   background-color: #e0afa0 !important;
   border-color: white !important;
@@ -15,4 +16,19 @@
   background-color: white !important;
   color: #e0afa0 !important;
   transform: scale(1.05);
+}
+.bodyAse{
+  background-color: #bcb8b1;
+  text-align: center;
+  font-size: 1.2em;
+  font-family: 'Poppins', sans-serif;
+  color: #463f3a;
+}
+.bodyAse div{ margin-bottom: 2em !important; }
+.headerAse, .footerAse{
+  background-color: #463f3a !important;
+  text-align: center !important;
+  font-size: 5em !important;
+  font-family: 'Patua One', cursive;
+  color: #f4f3ee;
 }

@@ -3,35 +3,18 @@
   <head>
     <meta charset="utf-8">
   </head>
-  <style media="screen">
-    .modal-body{
-      background-color: #bcb8b1;
-      text-align: center;
-      font-size: 1.2em;
-      font-family: 'Poppins', sans-serif;
-      color: #463f3a;
-    }
-    .modal-body div{ margin-bottom: 2em !important; }
-    .modal-header, .modal-footer{
-      background-color: #463f3a !important;
-      text-align: center !important;
-      font-size: 5em !important;
-      font-family: 'Patua One', cursive;
-      color: #f4f3ee;
-    }
-  </style>
   <body>
     <!--Modal de asesorías (las odio pq son lasrgas pero hermosas) -->
     <div class="modal fade"  tabindex="-1" id="modalAse" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header headerAse">
             <h5 class="modal-title" id="subject"><!--Aquí va la materia--></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body" id="bodyModalAse">
+          <div class="modal-body bodyAse" id="bodyModalAse">
             <div class="card card-body" id="asesor"></div>
             <div class="card card-body" id="quota"></div>
             <div class="card card-body" id="days"></div>
@@ -39,7 +22,7 @@
             <div class="card card-body" id="classroom"></div>
             <div class="card card-body" id="description"></div>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer footerAse">
             <button type="button" class="btn btn-secondary camb" data-dismiss="modal">Cerrar</button>
             <button type="button" class="btn btn-primary camb" id="soliAse">Solicitar asesoría</button>
           </div>
@@ -50,15 +33,15 @@
     <% if (ases != ""){%>
       <div class="list-group">
         <% for (let adv of ases) {%>
-          <div class="container" style="margin-top: 15px;">
-            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="container" style="margin-top: 15px; padding:.5em;">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" style="padding:2em;">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1"><%= adv.subject %></h5>
                 <small><%= adv.starts%> - <%= adv.ends%></small>
               </div>
               <p class="mb-1"><%= adv.description %></p>
+              <button id="<%= adv.id%>" class="btn btn-outline my-sm-0 verAse camb" style="float: right; margin-bottom: .5em;">Ver asesoría</button>
               <small><%= adv.days %></small>
-              <button id="<%= adv.id%>" class="btn btn-outline my-sm-0 verAse" style="padding: 0;">Ver asesoría</button>
             </a>
           </div>
            <!-- data-toggle="modal" data-target="#modalAse" -->
