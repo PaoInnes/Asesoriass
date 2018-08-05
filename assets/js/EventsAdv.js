@@ -21,10 +21,14 @@ var idAsesoriaActual;
       // console.log(asesoria[1].canRequest);
       $("#editarAse").remove();
       $("#estadoSoli").remove();
+      $("#cupoLleno").remove();
       if ( asesoria[1].canRequest == "false" || asesoria[0].inscritos == asesoria[0].quota) //Checar si se puede inscribir y aún hay cupo
         $("#soliAse").hide();
       else
         $("#soliAse").show();
+
+      if ( asesoria[0].inscritos == asesoria[0].quota )
+        $("#bodyModalAse").append("<div class=\"alert alert-danger\" role=\"alert\" id=\"cupoLleno\">Ya no puedes enviar una solicitud a esta asesoría, porque no hay cupo</div>");
 
       if( typeof asesoria[2] != "undefined" ){
 

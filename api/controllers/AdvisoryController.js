@@ -163,6 +163,20 @@ module.exports = {
     else
       return res.redirect("/inspeccionarAsesoria/" + req.body.idAse);
   },
+  getRequests: function(req, res) {
+    Asesorados.find({
+      asesorado: req.session.userId,
+      estado: { "!=" : "Aceptado"}
+    })
+    .populate('asesoria')
+    .exec((error, result)=>{
+      if (error)
+        return res.serverError();
+
+      console.log(result);
+      return res.json(result);
+    })
+  },
   // aumCupo: function(req, res) {
   //   if (req.body.quota <= 20){
   //     Advisory.update(

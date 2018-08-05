@@ -4,19 +4,21 @@
         method: "POST",
       }).done((response)=>{
         // var aux = JSON.parse(response);
-        for (var ase of response){
-          let maq = "<div class=\"container\" style=\"margin-top: 15px;\" >"
-            maq += "<a href=\"inspeccionarAsesoria/"+ ase.id +"\" class=\"list-group-item list-group-item-action flex-column align-items-start\">"
-              maq += "<div class=\"d-flex w-100 justify-content-between\">"
-                maq += "<h5 class=\"mb-1\">"+ ase.subject +"</h5>"
-                maq += "<small>"+ ase.starts +"-"+ ase.ends +"</small>"
-              maq += "</div>"
-              maq += "<p class=\"mb-1\">"+ ase.description +"</p>"
-              maq += "<small>" + ase.days + "</small>"
-            maq += "</a>"
-          maq += "</div>"
-          $("#"+ ele).append(maq);
-        }
+        for (var ase of response)
+          if ( ase ){
+            let esSuya = (ele == "porDar")? "inspeccionarAsesoria/"+ ase.id : "#" ;
+            let maq = "<div class=\"container\" style=\"margin-top: 15px;\" >"
+              maq += "<a href=\"" + esSuya + "\" class=\"list-group-item list-group-item-action flex-column align-items-start\">"
+                maq += "<div class=\"d-flex w-100 justify-content-between\">"
+                  maq += "<h5 class=\"mb-1\">"+ ase.subject +"</h5>"
+                  maq += "<small>"+ ase.starts +"-"+ ase.ends +"</small>"
+                maq += "</div>"
+                maq += "<p class=\"mb-1\">"+ ase.description +"</p>"
+                maq += "<small>" + ase.days + "</small>"
+              maq += "</a>"
+            maq += "</div>"
+            $("#"+ ele).append(maq);
+          }
       });
     }
 
@@ -39,7 +41,31 @@
       .fail(()=>{ swal({ title: "No se puede actualizar en este momento, intenta más tarde", icon: "error" }); });
     });
 
-    //Cambiar conraseña
+    //Obtener las solicitudes que ha enviado
+    $.ajax({
+      url: '/getRequests',
+      method: 'get',
+    })
+    .done((response)=>{
+      console.log(response);
+      for (var ase of response)
+        if ( ase ){
+          console.log(ase);
+          let clase = (ase.estado == "Rechazado")? "list-group-item-danger" : "list-group-item-light"
+          let maq = "<a class=\"list-group-item " + clase + " flex-column align-items-start\">"
+                maq += "<div class=\"d-flex w-100 justify-content-between\">"
+                  maq += "<h5 class=\"mb-1\">"+ ase.asesoria.subject +"</h5>"
+                  maq += "<small>"+ ase.asesoria.starts +"-"+ ase.asesoria.ends +"</small>"
+                maq += "</div>"
+                maq += "<p class=\"mb-1\">"+ ase.asesoria.description +"</p>"
+                maq += "<small>" + ase.asesoria.days + "</small>"
+              maq += "</a>"
+
+          $("#solis").append(maq);
+        }
+    });
+
+    //Cambiar contraseña
     $("#change").click(()=>{
       pass = $("#pass").val();
       newPass = $("#newpass").val();
